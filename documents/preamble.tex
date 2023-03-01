@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \file       preamble.tex
+% \brief      Преамбула для проекта
+% \details    Теоретически можно вынести настройку в класс ЕСПД
+% \date       20.02.23 - создан
+% \author     Соболев А.А.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{cite} % Для цитирования
+\usepackage{amsmath,bm}
+\usepackage{gensymb} % Для знака градуса
+\usepackage{mathtools}
+\usepackage{listings} % Для листингов исходного кода
+\usepackage{hhline} % Для двойной линии отчерка в заголовках таблиц
+\usepackage{color} % Цвет для листингов
+\usepackage{stackengine}
+\usepackage{amssymb}
+%\usepackage{xstring}
+%\usepackage[
+%backend=biber,
+%style=ext-authoryear%,
+%%sorting=nyvt
+%]{biblatex}
+\usepackage{cite}
+
+\usepackage[group-digits=false, output-decimal-marker={.}]{siunitx} % Для лёгкой замены разделителя целой и дробной частей (точка/запятая) писать \num{0.5} и тогда автоматом точка будет заменена на запятую, если выставить output-decimal-marker={.}
+
+%\usepackage{tocstyle}
+%\usetocstyle{standard}
+%\settocfeature{raggedhook}{\raggedright}
+
+%\usepackage{titlesec}
+\usepackage{hyperref}
+\hypersetup{
+	pdfencoding=auto,
+	colorlinks=false,
+	linktoc=all,
+	hypertexnames=false,
+	hidelinks = true,
+	bookmarks=true
+%	bookmarksnumbered=true
+}
+\usepackage{bookmark}
+
+\newcommand{\intdelim}{,}%{;}%  разделитель интервала вида [0,360)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% исправление чтобы пакет setspace мог менять межстрочный интервал!
+\makeatletter
+\let\@currsize\normalsize
+\makeatother
+
+%\bibliographystyle{ugost2008}
+%\DeclareFieldFormat[article]{volume}{\bibstring{jourvol}\addnbspace #1}
+%\DeclareFieldFormat[article]{number}{\bibstring{number}\addnbspace #1}
+\bibliographystyle{ugost2008}
+\setmainfont{Times New Roman}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Греческие буквы переопределение
+\renewcommand{\kappa}{\varkappa}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Знаки >= <=
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Переопределение команд дефиса
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sdash}{\nobreakdash-}  % Дефис неразрывный без пробелов до и после
+\newcommand{\ndash}{\nobreakdash~--~}  % Короткое тире неразрывное с пробелами до и после
+\newcommand{\mdash}{\nobreakdash~---~} % Длинное тире неразрывное с пробелами до и после
+\newcommand{\nbdash}{\nobreakdash--}  % Короткое тире неразрывное без пробелов до и после
+\newcommand{\mbdash}{\nobreakdash---} % Длинное тире неразрывное без пробелов до и после
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Для таблиц longtable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\doublerulesep}{1.5pt}% Разделитель между двойным отчерком заголовка таблицы
+\floatsetup[longtable]{LTcapwidth=table} % Выравнивание заголовка по левому краю
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Определение форматирования исходного кода в тексте документа
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Можно выделять исходники цветом, но зачем
+%\definecolor{dkgreen}{rgb}{0,0.5,0}
+%\definecolor{gray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{
+	frame=none,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=fixed, %flexible,
+	basicstyle=\listingtextsize\fontspec{Noto Sans Mono},%{Courier New},
+	extendedchars=true, % без символа \ !!! - так поддерживается русский язык в комментариях
+	inputencoding=utf8x,
+%    escapechar=|,
+	numbers=left,
+%	numberstyle=\tiny,
+%	stepnumber=1,
+%	numberstyle=\tiny\color{mauve},
+%	keywordstyle=\color{blue},
+%	commentstyle=\color{dkgreen},
+%	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+%% Поддержка русского языка в комментариях к исходному коду
+\makeatletter % see https://tex.stackexchange.com/a/320345
+\lst@InputCatcodes
+\def\lst@DefEC{%
+	\lst@CCECUse \lst@ProcessLetter
+	^^80^^81^^82^^83^^84^^85^^86^^87^^88^^89^^8a^^8b^^8c^^8d^^8e^^8f%
+	^^90^^91^^92^^93^^94^^95^^96^^97^^98^^99^^9a^^9b^^9c^^9d^^9e^^9f%
+	^^a0^^a1^^a2^^a3^^a4^^a5^^a6^^a7^^a8^^a9^^aa^^ab^^ac^^ad^^ae^^af%
+	^^b0^^b1^^b2^^b3^^b4^^b5^^b6^^b7^^b8^^b9^^ba^^bb^^bc^^bd^^be^^bf%
+	^^c0^^c1^^c2^^c3^^c4^^c5^^c6^^c7^^c8^^c9^^ca^^cb^^cc^^cd^^ce^^cf%
+	^^d0^^d1^^d2^^d3^^d4^^d5^^d6^^d7^^d8^^d9^^da^^db^^dc^^dd^^de^^df%
+	^^e0^^e1^^e2^^e3^^e4^^e5^^e6^^e7^^e8^^e9^^ea^^eb^^ec^^ed^^ee^^ef%
+	^^f0^^f1^^f2^^f3^^f4^^f5^^f6^^f7^^f8^^f9^^fa^^fb^^fc^^fd^^fe^^ff%
+	^^^^20ac^^^^0153^^^^0152%
+	% Basic Cyrillic alphabet coverage
+	^^^^0410^^^^0411^^^^0412^^^^0413^^^^0414^^^^0415^^^^0416^^^^0417%
+	^^^^0418^^^^0419^^^^041a^^^^041b^^^^041c^^^^041d^^^^041e^^^^041f%
+	^^^^0420^^^^0421^^^^0422^^^^0423^^^^0424^^^^0425^^^^0426^^^^0427%
+	^^^^0428^^^^0429^^^^042a^^^^042b^^^^042c^^^^042d^^^^042e^^^^042f%
+	^^^^0430^^^^0431^^^^0432^^^^0433^^^^0434^^^^0435^^^^0436^^^^0437%
+	^^^^0438^^^^0439^^^^043a^^^^043b^^^^043c^^^^043d^^^^043e^^^^043f%
+	^^^^0440^^^^0441^^^^0442^^^^0443^^^^0444^^^^0445^^^^0446^^^^0447%
+	^^^^0448^^^^0449^^^^044a^^^^044b^^^^044c^^^^044d^^^^044e^^^^044f%
+	^^^^0401^^^^0451^^^^0020%
+	%%%
+	^^00}
+\lst@RestoreCatcodes
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Задание перечислений буквами
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{enumitem}
+%
+%\makeatletter
+%\newcommand{\realasbuk}[1]{\expandafter\russian@realalph\csname c@#1\endcsname}
+%
+%\def\russian@realAlph#1{\ifcase#1\or
+%	А\or Б\or В\or Г\or Д\or Е\or Ж\or
+%	З\or И\or К\or Л\or М\or Н\or О\or
+%	П\or Р\or С\or Т\or У\or Ф\or Х\or
+%	Ц\or Ч\or Ш\or Щ\or Э\or Ю\or Я\else\xpg@ill@value{#1}{russian@Alph}\fi}
+%\def\russian@realalph#1{\ifcase#1\or
+%	а\or б\or в\or г\or д\or е\or ж\or
+%	з\or и\or к\or л\or м\or н\or о\or
+%	п\or р\or с\or т\or у\or ф\or х\or
+%	ц\or ч\or ш\or щ\or э\or ю\or я\else\xpg@ill@value{#1}{russian@alph}\fi}
+%
+%\AddEnumerateCounter{\realasbuk}{\russian@realalph}{щ}
+%\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Задание полей титульных страниц
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\productcodefull}{АБВГД.12345} % Код организации + Регистрационный код
+\newcommand{\programname}{<<Галактический транклюкатор>>} % Название программы
+\newcommand{\productname}{<<Шифр (название) изделия>>} % Шифр (название) изделия
+\newcommand{\algoname}{<<Аббревиатура алгоритма>>} % Сокращенное названия алгоритма
+\title{Изделие {\productname}\\Специальное программное обеспечение ПТУ\\Программный комплекс\\\programname} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Отдельно для ИУЛ
+\iulproductname{Изделие \productname\\Специальное программное обеспечение ПТУ\\Программный комплекс\\\programname}
+\iulcontrolsumm{1234.5678.9012.3456}
+\iulversion{111}
+\iulnumoflastchange{222}
+\iulnote{~}
+\iuldeveloper{Разработчиков} % Разраб.
+\iulcheck{Проверялов} % Проверил
+\iulnormocontrol{Нормоконтролеров} % Н.контр
+\iulapproved{Утверждаев} % Утв.
+\firstapplication{} % Первое применение
+\referencenumber{} % Справ №
+%\organizationcode{01234} % Код организации
+%\registrationcode{56789} % Регистрационный код
+\productcode{\productcodefull} % Код организации + Регистрационный код
+\redaction{01} % Номер редакции
+\documentnumber{01} % Номер документа данного вида
+%\partnumber{1} % Номер части документа - чтобы задать - надо фиксить класс espd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Фамилии, должности и т.д. для титульников
+%
+% СОГЛАСОВАНО
+\customerrank{Начальник\\межгалактической комиссии}
+\customername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
+
+% УТВЕРЖДАЮ
+\chiefconstructorrank{Главный конструктор\\изделия \productname}
+\chiefconstructorname{А.Б.~Главный}
+
+\fromcustomerrank{От межгалактической комиссии}
+\fromcustomername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
+
+\headofdepartmentrank{Начальник Центра}
+\headofdepartmentname{А.Б.~Чатланин}
+
+\deputyofchiefconstructorrank{Зам.~гл.~конструктора}
+\deputyofchiefconstructorname{А.Б.~Заместителев}
+%
+\developerrank{Разработчик}
+\developername{А.Б.~Разработчиков}
+
+%\headoflaboratoryrank{Начальник лаборатории 777}
+%\headoflaboratoryname{А.Б.~Лабораториев}
+
+% Исполнитель(и)
+\authorname{А.Б.~Пацак}
+%%
+%\authori{А.Б.~Пацак1}
+%\authorii{А.Б.~Пацак2}
+
+\normocontrollerrank{Нормоконтроллер}
+\normocontrollername{~}
+
+\year{2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Водяной знак
+\usepackage{draftwatermark} % Использовать это! Не работает поверх рисунков, но их у нас мало 
+\SetWatermarkText{PREPRINT}
+\SetWatermarkLightness{0.8}
+\SetWatermarkScale{0.8}
+\SetWatermarkHorCenter{0.65\paperwidth}
+\SetWatermarkVerCenter{0.55\paperheight}

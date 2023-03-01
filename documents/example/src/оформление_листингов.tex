@@ -1,0 +1,132 @@
+\newpage\section{Оформление листингов исходного кода}
+
+В данном разделе приводится пример оформления листингов исходного кода.
+
+\subsection{Пример оформления иерархии вложенности проекта}
+
+Данный пример иерархии вложенности файлов проекта получен под linux в файл \lstinline|example| при помощи команды:
+
+\begin{lstlisting}[numbers=none]
+tree -o example --charset windows-1251 | sed -e 's/[\]/ /g'
+\end{lstlisting}
+
+Для обеспечения правильного отображения в конце каждой строки должны быть символы переноса строки: \lstinline|\\|.\\
+
+{
+\fontspec{Noto Sans Mono}\listingtextsize\noindent
+Корневая директория программы\\
+├── CMakeLists.txt\\
+├── include\\
+│   ├── compare.h\\
+│   ├── lap.h\\
+│   └── sparse.h\\
+├── src\\
+│   ├── laphungarian.cpp\\
+│   ├── lapjvcdense.cpp\\
+│   ├── lapjvcsparse.cpp\\
+│   ├── lapmack.cpp\\
+│   ├── lapseqextr.cpp\\
+│   └── sparse.cpp\\
+
+% обязательно оставить один пробел строки!
+}
+
+\subsection{Пример оформления листингов}
+
+Листинг 1:
+
+\begin{lstlisting}
+//------------------------------------------------------------------------------
+///
+/// \file       sparse.h
+/// \brief      Работа с разреженными матрицами
+/// \details    Перевод матрицы из плотного представления в COO (Coordinate list), CSR (Compressed Sparse Row Yale
+/// format), CSC (Compressed Sparse Column Yale format) вид.
+/// \date       27.05.22 - создан
+/// \author     Соболев А.А.
+/// \addtogroup spml
+/// \{
+///
+
+#ifndef SPML_SPARSE_H
+#define SPML_SPARSE_H
+
+// System includes:
+#include <limits>
+#include <armadillo>
+#include <algorithm>
+
+// SPML includes:
+#include <compare.h>
+
+namespace SPML /// Специальная библиотека программных модулей (СБ ПМ)
+{
+namespace Sparse /// Разреженные матрицы
+{
+//------------------------------------------------------------------------------
+///
+/// \brief Структура хранения матрицы в COO формате (Coordinate list)
+/// \details Матрица A[n,m] (n - число строк, m - число столбцов)
+///
+struct CMatrixCOO
+{
+std::vector<double> coo_val;    ///< Вектор ненулевых элементов матрицы A[n,m] (n - число строк, m - число столбцов), размер nnz
+std::vector<int> coo_row;       ///< Индексы строк ненулевых элементов
+std::vector<int> coo_col;       ///< Индексы столбцов ненулевых элементов
+};
+} // end namespace Sparse
+} // end namespace SPML
+#endif // SPML_SPARSE_H
+/// \}
+\end{lstlisting}
+
+\newpage
+Листинг 2:
+
+\begin{lstlisting}
+//----------------------------------------------------------------------------------------------------------------------
+///
+/// \brief Ключ элемента Aij матрицы A в COO формате (Coordinate list)
+/// \attention Оператор < перегружен для случая построчного хранения
+///
+struct CKeyCOO
+{
+public:
+///
+/// \brief i - индекс строки
+///
+int i() const { return i_; }
+
+///
+/// \brief j - индекс столбца
+///
+int j() const { return j_; }
+
+///
+/// \brief Конструктор по умолчанию
+///
+CKeyCOO() : i_( 0 ), j_( 0 ){}
+
+///
+/// \brief Параметрический конструктор
+/// \param[in] i - индекс строки
+/// \param[in] j - индекс столбца
+///
+CKeyCOO( int i, int j ) : i_( i ), j_( j ){}
+
+bool operator <( CKeyCOO const& other ) const
+{
+if( ( this->i_ < other.i_ ) || ( ( this->i_ == other.i_ ) && ( this->j_ < other.j_ ) ) ) {
+return true;
+}
+return false;
+}
+
+private:
+int i_; ///< Индекс строки
+int j_; ///< Индекс столбца
+};
+\end{lstlisting}
+
+
+

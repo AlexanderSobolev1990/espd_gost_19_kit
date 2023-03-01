@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \file       program_description.tex
+% \brief      Описание программы
+% \date       28.02.23 - создан
+% \author     Соболев А.А.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[programdescription]{../espd}
+\input{../preamble} % Преамбула
+\graphicspath{{./images/}} % Директория для картинок в тексте
+\begin{document} % Начало документа
+\clubpenalty=10000 % Это костыль против
+\widowpenalty=10000 % "висячих" строк
+\righthyphenmin=200 % Избавляемся
+{\sloppy % от переносов слов
+\maketitle % Титульный лист
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{Аннотация}{annotation}
+	\input{src/аннотация}
+}
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{\wordcontents}{toc}
+	\tableofcontents % Содержание
+}
+%
+% Дальше пошли разделы
+\input{src/общие_сведения} 
+\input{src/функциональное_назначение} 
+\input{src/описание_логической_структуры} 
+\input{src/используемые_технические_средства} 
+\input{src/вызов_и_загрузка} 
+\input{src/входные_и_выходные_данные} 
+%
+% Перечень литературы
+\cleardoublepage
+\phantomsection
+\bibliography{bibliography}
+%
+% Перечень сокращений
+\cleardoublepage
+\phantomsection
+\input{src/аббревиатуры}
+%
+% Лист регистрации изменений по ЕСПД
+\registrationlistESPD 
+}
+\end{document}

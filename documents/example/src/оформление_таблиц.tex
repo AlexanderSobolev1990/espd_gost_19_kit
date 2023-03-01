@@ -1,0 +1,308 @@
+\newpage
+\section{Оформление таблиц}
+
+В данном разделе приводится пример иерархии вложенности по п.~2.6 ГОСТ~19.106 \cite{gost19106}.
+
+Оформление всегда следует вести при помощи класса \lstinline|longtable|, поскольку это дает возможность переноса длинной таблицы на следующую страницу.
+
+\subsection{Простая маленькая таблица}
+
+Простой пример маленькой таблицы c маленькими колонками, выровненными по центру, без каких-либо переполнений.
+{\tabletextsize
+% Всегда вставлять параметр [с] после longtable - выравнивание по центру страницы
+\begin{longtable}[c]{| >{\centering}m{25mm} | >{\centering}m{25mm} | >{\centering}m{50mm} |}
+	\caption{\normalsize Пример маленькой таблицы\hspace{25cm}} % \hspace{25cm} - хак, для того чтобы было выровнено по левому краю, иначе без головной боли не получилось
+	\label{t:tab0} \\		
+	\hline % горизонтальная линия
+	колонка 1 & колонка 2 & колонка 3 \tabularnewline
+	\hhline{|=|=|=|} % горизонтальная двойная линия
+	111 & 222 & 333
+	\tabularnewline\hline % горизонтальная линия
+\end{longtable}
+}
+
+\subsection{Широкая таблица с длинными заголовками колонок}
+
+Пример таблицы с длинными заголовками колонок
+{\tabletextsize
+\begin{longtable}[c]{| >{\raggedright}m{55mm} | >{\centering}m{55mm} | >{\raggedleft}m{55mm} |}
+	\caption{\normalsize Пример таблицы c возможно очень длинным заголовком, который будет перенесен на вторую строчку\hspace{25cm}} % \hspace{25cm} - хак, для того чтобы было выровнено по левому краю, иначе без головной боли не получилось
+	\label{t:tab1} \\		
+	\hline % горизонтальная линия
+	колонка 1 с очень длинным заголовком, просто капец каким длинным & колонка 2 по центру & колонка 3 по правому краю \tabularnewline
+	\hhline{|=|=|=|} % горизонтальная двойная линия
+	Содержание колонки 1 & Содержание колонки 2 & Содержание колонки 3, возможно очень длинное содержание, которое нормально отображается с переносом по словам
+	\tabularnewline\hline % горизонтальная линия
+\end{longtable}
+}
+
+Пример оформления ссылки на таблицу: см.~таблицу~\ref{t:tab1}.
+
+\newpage
+\subsection{Часто встречающая в документации таблица}
+
+Пример таблицы, часто встречающийся в программной документации:
+
+{\tabletextsize
+\begin{longtable}[c]{| >{\centering}m{12mm} | >{\raggedright}m{53mm} | >{\centering}m{22mm} | >{\centering}m{15mm} | >{\raggedright}m{30mm} | >{\centering}m{18mm} |}
+	%----------------------- преамбула ---------------------	
+	\caption{\normalsize Пример таблицы\hspace{25cm}}
+	\label{t:tab2} \\
+	\hline
+	\centering{Номер\\слова} & 
+	\centering{Наименование информации} & 
+	\centering{Условное\\обозначение} & 
+	\centering{Размер-\\ность} & 
+	\centering{Пределы\\изменения} & 
+	\centering{Примеча-\\ние} \tabularnewline
+	\hhline{|=|=|=|=|=|=|}
+	\endfirsthead % Конец заголовка на 1 странице
+	\multicolumn{6}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
+	\hline
+	% Простой способ
+%	Номер слова & Наименование информации & Усл.~об. & Размерн. & Пределы изменения & Примеч. \tabularnewline
+	%
+	% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+	\centering{Номер\\слова} & 
+	\centering{Наименование информации} & 
+	\centering{Условное\\обозначение} & 
+	\centering{Размер-\\ность} & 
+	\centering{Пределы\\изменения} & 
+	\centering{Примеча-\\ние} \tabularnewline
+	\hhline{|=|=|=|=|=|=|}
+	\endhead
+	\hline
+	\multicolumn{6}{r}{\tabletextsize см. далее}
+	\endfoot
+	\hline
+	\endlastfoot	
+	%------------------- табличные данные ------------------
+
+	1 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	2 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	3 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	4 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	5 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	6 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	7 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	8 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+%
+%	\newpage % Принудительный перенос на новую страницу
+%
+	9 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	10 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	11 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	12 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	13 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	14 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	15 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	16 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	17 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	18 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	19 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+\end{longtable}
+}
+
+Пример оформления ссылки на таблицу: см.~таблицу~\ref{t:tab2}.
+
+\subsection{Пример таблицы спецификации}
+
+%\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+{
+	\renewcommand{\ULdepth}{1.8pt}\tabletextsize
+	\begin{longtable}[c]{|>{\raggedright}m{74mm}|>{\raggedright}m{64mm}|>{\raggedright}m{24mm}|}
+		%----------------------- преамбула ---------------------	
+		\hline
+		\centering{Обозначение} & 
+		\centering{Наименование} & 
+		\centering{Примечание} \xrowht[(5mm)]{5mm}\tabularnewline
+		\hhline{|=|=|=|}\hline
+		\endfirsthead % Конец заголовка на 1 странице
+		\hline
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		\centering{Обозначение} & 
+		\centering{Наименование} & 
+		\centering{Примечание} \xrowht[(5mm)]{5mm}\tabularnewline
+		\hhline{|=|=|=|}
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot	
+		%------------------- табличные данные ------------------		
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & \centering{\uline{Документация}} & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline		
+
+		1234567.12345-01-ЛУ & Лист утверждения & Размножать по указанию \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		1234567.12345-01-13 01 & Комплекс программ\\Самый лучший комплекс\\Описание программы & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & \centering{\uline{Компоненты}} & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+
+		1234567.12345-01 12 01-ДЭ & Программа\\Отображение информации\\Текст программы & Документ электронный \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		1234567.12345-01 12 01-УЛ & Информационно\sdash удостоверяющий лист & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		\newpage % Принудительный перенос на новую страницу
+		
+		пример если делать в каждой строке & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & \centering{\uline{Документация}} & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline		
+		
+		1234567.12345-01-ЛУ & Лист утверждения & Размножать \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & по указанию  \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline		
+		1234567.12345-01-13 01 & Комплекс программ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & Самый лучший комплекс & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & Описание программы & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & \centering{\uline{Компоненты}} & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		1234567.12345-01 12 01-ДЭ & Программа & Документ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & Отображение информации & электронный \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & Текст программы & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		1234567.12345-01 12 01-УЛ & Информационно\sdash удостоверяющий & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & лист & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+	\end{longtable}
+}
+
+\subsection{Пример таблицы ведомости эксплуатационных документов}
+
+%\newcommand\xrowht[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+{
+	\renewcommand{\ULdepth}{1.8pt}\tabletextsize
+	\begin{longtable}[c]{|>{\raggedright}m{68mm}|>{\raggedright}m{58mm}|>{\centering}m{8mm}|>{\raggedright}m{24mm}|}
+		%----------------------- преамбула ---------------------	
+		\hline
+		\centering{Обозначение} & 
+		\centering{Наименование} & 
+		\centering{Кол.\\экз.} & 
+		\centering{Местона-\\хождение} \xrowht[(5mm)]{5mm}\tabularnewline
+		\hhline{|=|=|=|=|}\hline
+		\endfirsthead % Конец заголовка на 1 странице
+		\hline
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		\centering{Обозначение} & 
+		\centering{Наименование} & 
+		\centering{Кол.\\экз.} & 
+		\centering{Местона-\\хождение} \xrowht[(5mm)]{5mm}\tabularnewline
+		\hhline{|=|=|=|=|}
+		\endhead
+		\hline
+		\endfoot
+		\hline
+		\endlastfoot	
+		%------------------- табличные данные ------------------		
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+		~ & \centering{\uline{Документы на общую\\программу СПО}} & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+	
+		1234567.12345-01 & Общая программа\\Специальное программное\\обеспечение\\Описание применения & 1 & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+		~ & или аналогично таблице\\приведенной выше\\можно разбивать\\текст построчно,\\хотя мое 
+		мнение\mdash это\\избыточно & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+		~ & ~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+	\end{longtable}
+}
+
+%\newpage
+%\subsection{Пример таблицы информационно-удостоверяющего листа}
+%
+%Данный лист используется в случае сдачи исходных текстов программ в виде *.zip архива с контрольной суммой (MD5).
+%
+%{
+%	\renewcommand{\ULdepth}{1.8pt}\tabletextsize
+%	\begin{longtable}[c]{|>{\centering}m{11mm}|>{\centering}m{50mm}|>{\centering}m{55mm}|>{\centering}m{20mm}|>{\centering}m{20mm}|}
+%		%----------------------- преамбула ---------------------	
+%		\hline
+%		{Номер\\п/п} & 
+%		{Обозначение документа} & 
+%		{Наименование изделия,\\наименование документа} &
+%		{Версия} &
+%		{Номер\\последнего\\изменения} \xrowht[(5mm)]{5mm}\tabularnewline
+%		\hhline{|=|=|=|=|=|}\hline
+%		\endfirsthead % Конец заголовка на 1 странице
+%		\hline
+%		\endfoot
+%		\hline
+%		%------------------- табличные данные ------------------		
+%		1 & АБВГ.ХХХХХХ.ХХЭСБ & Некое супер-изделие\\Электронная модель сборочной единицы & 2 & 1 \tabularnewline\hline
+%	\end{longtable}
+%}
+%\vspace{-12pt}
+%{
+%	\begin{longtable}[c]{|>{\centering}m{20mm}|>{\raggedright}m{148mm}|}	
+%		\hline
+%		MD5 & 1234.5678.9012.2345 \tabularnewline\hline		
+%	\end{longtable}	
+%}
+%\vspace{-12pt}
+%{
+%	\begin{longtable}[c]{|>{\centering}m{20mm}|>{\raggedright}m{148mm}|}	
+%		\hline
+%		MD5 & 1234.5678.9012.2345 \tabularnewline\hline		
+%	\end{longtable}	
+%}
+%

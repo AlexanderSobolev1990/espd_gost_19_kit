@@ -1,0 +1,59 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \file       example.tex
+% \brief      Пример
+% \date       18.05.22 - создан
+% \author     Соболев А.А.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[exampledoc]{../espd}
+\input{../preamble} % Преамбула
+\graphicspath{{./images/}} % Директория для картинок в тексте
+\begin{document} % Начало документа
+\clubpenalty=10000 % Это костыль против
+\widowpenalty=10000 % "висячих" строк
+\righthyphenmin=200 % Избавляемся
+{\sloppy % от переносов слов
+\maketitle % Титульный лист
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{Аннотация}{annotation}
+	\input{src/аннотация}
+}
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{\wordcontents}{toc}
+	\tableofcontents % Содержание
+}
+%
+% Дальше пошли разделы
+\input{src/оформление_разделов} 
+\input{src/оформление_перечислений} 
+\input{src/оформление_иллюстраций} 
+\input{src/оформление_формул} 
+\input{src/оформление_таблиц} 
+\input{src/оформление_листингов}
+%
+% Перечень литературы
+\cleardoublepage
+\phantomsection
+\bibliography{bibliography}
+%
+% Перечень сокращений
+\cleardoublepage
+\phantomsection
+\input{src/аббревиатуры}
+%
+% Приложения
+\input{src/приложение_1}
+\input{src/приложение_2}
+%
+% Лист регистрации изменений по ЕСПД
+\registrationlistESPD 
+%
+% Информационно-удостоверяющий лист (ИУЛ)
+\iulist 
+}
+\end{document}
