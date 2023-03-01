@@ -1,6 +1,6 @@
 /bin
 /build
-/output
+
 CMakeLists.txt.user
 
 ## Core latex/pdflatex auxiliary files:
