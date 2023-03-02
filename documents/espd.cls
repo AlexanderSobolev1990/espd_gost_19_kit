@@ -506,6 +506,20 @@
   \endgroup
 }
 
+\def\writesubsubsection#1{
+	\begingroup
+	\par
+	\parindent -1cm
+	\leftskip 2cm
+	\interlinepenalty\@M
+	%  \vspace{4mm}
+	\vspace{2mm}
+	{\subsectionsize#1}%
+	\vspace{2mm}
+	\par
+	\endgroup
+}
+
 \def\writeparagraph#1{
 	\begingroup
 	\par
@@ -624,9 +638,10 @@
 	\ClassError
 	{espd}
 	{Empty attsection title}
-	{According to GOST 19.106-78, section title can not be empty}
+	{According to GOST 19.106-78, attsection title can not be empty}
 	\fi
 	\refstepcounter{section}
+	\pdfbookmark[section]{\numsection~#1}{\thepage}
 	\writesection{\numsection~#1}  
 	%	\addcontentsline{toc}{section}{\numsection~#1}
 }
@@ -635,76 +650,36 @@
 	\ClassError
 	{espd}
 	{Empty attsubsection title}
-	{According to GOST 19.106-78, subsection title can not be empty}
+	{According to GOST 19.106-78, attsubsection title can not be empty}
 	\fi
 	\refstepcounter{subsection}
+	\pdfbookmark[subsection]{\numsubsection~#1}{\thepage}
 	\writesubsection{\numsubsection~#1}
 	%	\addcontentsline{toc}{subsection}{\numsubsection~#1}
 }
-
-%\newcommand{\attparagraph}[1]{  
-%	%  \parskip1mm
-%	\refstepcounter{paragraph}
-%	\writeparagraph{\numparagraph~#1}
-%	\ifx&#1&\else
-%%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-%	\fi  	
-%}
-%\newcommand{\attsubparagraph}[1]{
-%	\refstepcounter{subparagraph}
-%	\writeparagraph{\numsubparagraph~#1}
-%	\ifx&#1&\else
-%%	\addcontentsline{toc}{subparagraph}{\numsubparagraph~#1}
-%	\fi
-%}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newcommand{\attparagraphonly}[1]{  
-%	%  \parskip1mm
-%	\refstepcounter{paragraph}
-%	\writeparagraph{\theparagraphonly~#1}
-%	\ifx&#1&\else
-%	%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-%	\fi  	
-%}
-%\newcommand{\attsubparagraphonly}[1]{  
-%	%  \parskip1mm
-%	\refstepcounter{subparagraph}
-%	\writeparagraph{\thesubparagraphonly~#1}
-%	\ifx&#1&\else
-%	%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-%	\fi  	
-%}
-\newcommand{\attsubsubsection}[1]{  
-	%  \parskip1mm
+\newcommand{\attsubsubsection}[1]{
+	\ifx&#1&
+	\ClassError
+	{espd}
+	{Empty attsubsubsection title}
+	{According to GOST 19.106-78, attsubsubsection title can not be empty}
+	\fi
 	\refstepcounter{subsubsection}
-	\writeparagraph{\numsubsubsection~#1}
-	\ifx&#1&\else
-	%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-	\fi  	
+	\pdfbookmark[subsubsection]{\numsubsubsection~#1}{\thepage}
+	\writesubsubsection{\numsubsubsection~#1}
+	%	\addcontentsline{toc}{subsection}{\numsubsection~#1}
 }
 \newcommand{\attparagraph}[1]{
-	\refstepcounter{paragraph}
-	\writeparagraph{\numparagraph~#1}
-	\ifx&#1&\else
-	%	\addcontentsline{toc}{subparagraph}{\numsubparagraph~#1}
+	\ifx&#1&
+	\ClassError
+	{espd}
+	{Empty attparagraph title}
+	{According to GOST 19.106-78, attparagraph title can not be empty}
 	\fi
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\attsubsubsectiononly}[1]{  
-	%  \parskip1mm
-	\refstepcounter{subsubsection}
-	\writeparagraph{\thesubsubsectiononly~#1}
-	\ifx&#1&\else
-	%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-	\fi  	
-}
-\newcommand{\attparagraphonly}[1]{  
-	%  \parskip1mm
 	\refstepcounter{paragraph}
-	\writeparagraph{\theparagraphonly~#1}
-	\ifx&#1&\else
-	%	\addcontentsline{toc}{paragraph}{\numparagraph~#1}
-	\fi  	
+	\pdfbookmark[paragraph]{\numparagraph~#1}{\thepage}
+	\writeparagraph{\numparagraph~#1}
+	%	\addcontentsline{toc}{subsection}{\numsubsection~#1}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1897,5 +1872,3 @@
 		\end{longtable}
 	}
 }
-
-
