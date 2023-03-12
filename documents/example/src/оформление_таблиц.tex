@@ -5,6 +5,60 @@
 
 Оформление всегда следует вести при помощи класса \lstinline|longtable|, поскольку это дает возможность переноса длинной таблицы на следующую страницу.
 
+{\tabletextsize
+	% Всегда вставлять параметр [с] после longtable - выравнивание по центру страницы
+	\begin{longtable}[c]{| >{\centering}m{25mm} | >{\centering}m{25mm} | >{\centering}m{30mm} |  >{\raggedright}m{10mm} }
+		\caption{\normalsize Пример маленькой таблицы\hspace{25cm}} % \hspace{25cm} - хак, для того чтобы было выровнено по левому краю, иначе без головной боли не получилось
+		\label{t:tab000} \\		
+		\hhline{|-|-|-|} % горизонтальная линия
+		колонка 1 & колонка 2 & колонка 3 & \tabularnewline
+		\hhline{|=|=|=|} % горизонтальная двойная линия
+		111 & 222 & 333 & \rdelim\}{3}{*}[Foo] \tabularnewline \hhline{|-|-|-|}
+		111 & 222 & 333 & \tabularnewline \hhline{|-|-|-|}
+		111 & 222 & 333 & \tabularnewline \hhline{|-|-|-|}
+		111 & 222 & 333 & \rdelim\}{2}{*}[Boo] \tabularnewline \hhline{|-|-|-|}
+		111 & 222 & 333 & \tabularnewline \hhline{|-|-|-|}
+	\end{longtable}
+}
+
+{\tabletextsize
+	\begin{longtable}[c]{| >{\centering}m{25mm} | >{\raggedright}m{50mm} | >{\raggedright}m{50mm} }
+		\caption{\normalsize Структура входного пакета комплекса\hspace{25cm}} % \hspace{25cm} - хак, для того чтобы было выровнено по левому краю, иначе без головной боли не получилось
+		\label{t:tab007} \\		
+		\hhline{|-|-|} % горизонтальная линия
+		Номер\\слова & \centering{Наименование информации} & \tabularnewline
+		\hhline{|=|=|} % горизонтальная двойная линия		
+		\endfirsthead % Конец заголовка на 1 странице
+		\multicolumn{2}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
+		\hhline{|-|-|}
+		% Простой способ
+		%	Номер слова & Наименование информации & Усл.~об. & Размерн. & Пределы изменения & Примеч. \tabularnewline
+		%
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		Номер\\слова & \centering{Наименование информации} & \tabularnewline
+		\hhline{|=|=|}
+		\endhead
+		\hhline{|-|-|}
+%		\multicolumn{2}{r}{\tabletextsize см. далее}
+		\endfoot
+		\hhline{|-|-|}
+		\endlastfoot	
+		%------------------- табличные данные ------------------
+		1 & Контрольное слово, $CW1$ & \rdelim\}{3}{*}[Заголовок 1 (см. таблицу \ref{t:tab000})] \tabularnewline \hhline{|-|-|}
+		$\ldots$ & $\ldots$ & \tabularnewline \hhline{|-|-|}
+		7 & Размер пакета, $Size$ & \tabularnewline \hhline{|-|-|}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		8 & Какая-то инфа & \rdelim\}{3}{*}[Заголовок 2 (см. таблицу \ref{t:tab000})] \tabularnewline \hhline{|-|-|}
+		$\ldots$ & $\ldots$ & \tabularnewline \hhline{|-|-|}
+		32 & Количество пачек, $Np$ & \tabularnewline \hhline{|-|-|}
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		33 & Пачка 1 & \rdelim\}{3}{*}[Пачки, $Np$ шт. (см. таблицу \ref{t:tab000})] \tabularnewline \hhline{|-|-|}
+		$\ldots$ & $\ldots$ & \tabularnewline \hhline{|-|-|}			
+		$33+(16 \times Np)$& Пачка $Np$ & \tabularnewline \hhline{|-|-|} 
+     	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{longtable}
+}
+
 \subsection{Простая маленькая таблица}
 
 Простой пример маленькой таблицы c маленькими колонками, выровненными по центру, без каких-либо переполнений.
@@ -306,3 +360,4 @@
 %	\end{longtable}	
 %}
 %
+
