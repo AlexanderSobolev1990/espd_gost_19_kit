@@ -124,7 +124,7 @@
 \newcommand{\lusize}{\fontsize{12pt}{14pt}\selectfont}
 \newcommand{\subsectionsize}{\fontsize{14pt}{16pt}\selectfont}
 \newcommand{\attachmentsize}{\fontsize{14pt}{18pt}\selectfont}
-%\newcommand{\tabletextsize}{\fontsize{10pt}{15pt}\selectfont}
+\newcommand{\leftstamptextsize}{\fontsize{10pt}{15pt}\selectfont}
 \newcommand{\tabletextsize}{\fontsize{12pt}{15pt}\selectfont}
 %\newcommand{\picturetextsize}{\fontsize{12pt}{15pt}\selectfont} % smaller font
 \newcommand{\picturetextsize}{\fontsize{14pt}{18pt}\selectfont} % normal
@@ -133,10 +133,13 @@
 \newcommand{\footnotetextsize}{\fontsize{10pt}{15pt}\selectfont}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Бумага
+
 \setlength{\paperwidth}{210mm}
 \setlength{\paperheight}{297mm}
 \setlength{\pdfpagewidth}{\paperwidth}
 \setlength{\pdfpageheight}{\paperheight}
+%\setlength{\pagewidth}{\paperwidth}
+%\setlength{\pageheight}{\paperheight}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Отступы и размеры
 \setlength{\hoffset}{-25.4mm} % Отступ равен 1 дюйм (25,4 мм) + значение \hoffset
@@ -209,7 +212,7 @@
 \def\wordincldocanddateESPD{Входящий\\\textnumero~сопрово-\\дительно-\\го~докум.\\и~дата}
 \def\wordsign{Подп.} % fixed было "Подпись"
 \def\wordsignfull{Подпись} % fixed было "Подпись"
-\def\worddate{Дата}
+\def\worddate{Да-\\та}
 \def\wordchanges{Изм.}
 \def\wordchanged{изменен-\\ных}
 \def\wordreplaced{заменен-\\ных}
@@ -713,11 +716,24 @@
 %
 % \cellleft - выравнивание будет по левому краю ячейки
 %
+
+% Стиль как по ГОСТ
+%\def\stampfontstyle{%
+%\setlength{\arrayrulewidth}{0.5mm}%
+%\tabletextsize%
+%\setlength{\tabcolsep}{0mm}%
+%\itshape\fontspec{GOST type A Italic}% Italic приходится задавать так
+%}
+
+% как хочет норомоконтроль
+\def\stampfontstyle{%
+\setlength{\arrayrulewidth}{0.1mm}%
+\setlength{\tabcolsep}{0mm}%
+\leftstamptextsize%	
+}
+
 \newcommand{\stampleftfull}{
-	\setlength{\arrayrulewidth}{0.5mm}
-	\tabletextsize
-	\setlength{\tabcolsep}{0mm}
-	\itshape\fontspec{GOST type A Italic} % Italic приходится задавать так
+	\stampfontstyle
 	\begin{tabular}{|p{24.5mm}|p{34.5mm}|p{24.5mm}|p{24.5mm}|p{34.5mm}|p{21.0mm}|p{59.5mm}|p{59.5mm}|}
 		\cline{1-5}\cline{7-8}
 		\cell{24.5mm}{5mm}{~\wordoriginvnumber} & 
@@ -729,16 +745,13 @@
 		\cell{59.5mm}{5mm}{~\wordreferencenumber} &
 		\cell{59.5mm}{5mm}{~\wordfirstapplication} \\
 		\cline{1-5}\cline{7-8}
-		\cell{24.5mm}{7mm}{} & & & & & & \cell{59.5mm}{7mm}{~\normalsize\@referencenumber} & \cell{59.5mm}{7mm}{~\normalsize\@firstapplication} \\
+		\cell{24.5mm}{7mm}{} & & & & & & \cell{59.5mm}{7mm}{~\tabletextsize\@referencenumber} & \cell{59.5mm}{7mm}{~\tabletextsize\@firstapplication} \\
 		\cline{1-5}\cline{7-8}
 	\end{tabular}
 	\setlength{\tabcolsep}{\tabmarg}
 }
 \newcommand{\stampleftshort}{
-	\setlength{\arrayrulewidth}{0.5mm}
-	\tabletextsize
-	\setlength{\tabcolsep}{0mm}
-	\itshape\fontspec{GOST type A Italic} % Italic приходится задавать так
+	\stampfontstyle
 	\begin{tabular}{|p{24.5mm}|p{34.5mm}|p{24.5mm}|p{24.5mm}|p{34.5mm}|p{21.5mm} p{60mm} p{60mm}}
 		\cline{1-5}
 		\cell{24.5mm}{5mm}{~\wordoriginvnumber} & 
@@ -756,10 +769,7 @@
 	\setlength{\tabcolsep}{\tabmarg}
 }
 \newcommand{\stampleftonlyfirstapp}{
-	\setlength{\arrayrulewidth}{0.5mm}
-	\tabletextsize
-	\setlength{\tabcolsep}{0mm}
-	\itshape\fontspec{GOST type A Italic} % Italic приходится задавать так
+	\stampfontstyle
 	\begin{tabular}{|p{24.5mm}|p{34.5mm}|p{24.5mm}|p{24.5mm}|p{34.5mm}|p{21.5mm} p{59.5mm}|p{59.5mm}|}
 		\cline{1-5}\cline{8-8}
 		\cell{24.5mm}{5mm}{~\wordoriginvnumber} & 
@@ -771,16 +781,13 @@
 		\cell{59.5mm}{5mm}{} &
 		\cell{59.5mm}{5mm}{~\wordfirstapplication} \\
 		\cline{1-5}\cline{8-8}
-		\cell{24.5mm}{7mm}{} & & & & & & & \cell{59.5mm}{7mm}{~\normalsize\@firstapplication} \\
+		\cell{24.5mm}{7mm}{} & & & & & & & \cell{59.5mm}{7mm}{~\tabletextsize\@firstapplication} \\
 		\cline{1-5}\cline{8-8}
 	\end{tabular}
 	\setlength{\tabcolsep}{\tabmarg}
 }
 \newcommand{\stampleftonlyrefnum}{
-	\setlength{\arrayrulewidth}{0.5mm}
-	\tabletextsize
-	\setlength{\tabcolsep}{0mm}
-	\itshape\fontspec{GOST type A Italic} % Italic приходится задавать так
+	\stampfontstyle
 	\begin{tabular}{|p{24.5mm}|p{34.5mm}|p{24.5mm}|p{24.5mm}|p{34.5mm}|p{21.0mm}|p{59.5mm}|p{60.0mm}}
 		\cline{1-5}\cline{7-7}
 		\cell{24.5mm}{5mm}{~\wordoriginvnumber} & 
@@ -792,7 +799,7 @@
 		\cell{59.5mm}{5mm}{~\wordreferencenumber} &
 		\cell{60.0mm}{5mm}{} \\
 		\cline{1-5}\cline{7-7}
-		\cell{24.5mm}{7mm}{} & & & & & & \cell{59.5mm}{7mm}{~\normalsize\@referencenumber} & \\
+		\cell{24.5mm}{7mm}{} & & & & & & \cell{59.5mm}{7mm}{~\tabletextsize\@referencenumber} & \\
 		\cline{1-5}\cline{7-7}
 	\end{tabular}
 	\setlength{\tabcolsep}{\tabmarg}
@@ -1052,81 +1059,82 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Лист регистрации изменений по ЕСПД ГОСТ 19.604-78
 \newcommand{\reglisttableESPD}{ 
-	\setlength{\arrayrulewidth}{0.5mm} 
+%	\setlength{\arrayrulewidth}{0.5mm} 
+	\setlength{\arrayrulewidth}{0.1mm} 
 	\vspace{-5mm} % Сдвижка вверх потому что сделали поле верхнее 30 мм вместо 25
-	\fontspec{GOST type A Bold Italic} % Если ГОСТ ом
+%	\fontspec{GOST type A Bold Italic} % Если ГОСТ ом
 	\hbox{% 
-		\sectionsize % 14 - так лучше с ГОСТовским шрифтом
-%		\lusize % если без ГОСТовского шрифта
+%		\sectionsize % 14 - так лучше с ГОСТовским шрифтом
+		\lusize % если без ГОСТовского шрифта
 		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 			\hline
-			\multicolumn{10}{|c|}{\cell{184.5mm}{9.5mm}{\approvalsize \wordregistration}} \\ % Так лучше с ГОСТ овским шрифтом
-%			\multicolumn{10}{|c|}{\cell{184.5mm}{9.5mm}{\sectionsize \wordregistration}} \\ % Так лучше с обычным шрифтом
+%			\multicolumn{10}{|c|}{\cell{184.5mm}{9.5mm}{\approvalsize \wordregistration}} \\ % Так лучше с ГОСТ овским шрифтом
+			\multicolumn{10}{|c|}{\cell{185mm}{9.5mm}{\sectionsize \wordregistration}} \\ % Так лучше с обычным шрифтом
 %			\multicolumn{10}{|c|}{\cell{184.5mm}{9.5mm}{\wordregistration}} \\ % Так лучше с обычным шрифтом
 			\hline
-			& \multicolumn{4}{c|}{\cell{73.5mm}{5.5mm}{\wordsheetnumber}} & & & & & \\
+			& \multicolumn{4}{c|}{\cell{73.9mm}{5.9mm}{\wordsheetnumber}} & & & & & \\
 			\cline{2-5}
-			\vcell{7.5mm}{24.5mm}{18.5mm}{\wordchanges} &
-			\cell{19.5mm}{18.5mm}{\wordchanged} & \cell{19.5mm}{18.5mm}{\wordreplaced} & \cell{19.5mm}{18.5mm}{\wordnew} & \cell{19.5mm}{18.5mm}{\wordannulledESPD} & \vcell{19.5mm}{24.5mm}{18.5mm}{\wordsheetsindocESPD} & \vcell{24.5mm}{24.5mm}{18.5mm}{\worddocnumberESPD} & \vcell{24.5mm}{24.5mm}{18.5mm}{\wordincldocanddateESPD} & \vcell{14.5mm}{24.5mm}{18.5mm}{\wordsign} & \vcell{11.5mm}{24.5mm}{18.5mm}{\worddate} \\
+			\vcell{7.9mm}{24.9mm}{18.9mm}{\wordchanges} &
+			\cell{19.9mm}{18.9mm}{\wordchanged} & \cell{19.9mm}{18.9mm}{\wordreplaced} & \cell{19.9mm}{18.9mm}{\wordnew} & \cell{19.9mm}{18.9mm}{\wordannulledESPD} & \vcell{19.9mm}{24.9mm}{18.9mm}{\wordsheetsindocESPD} & \vcell{24.9mm}{24.9mm}{18.9mm}{\worddocnumberESPD} & \vcell{24.9mm}{24.9mm}{18.9mm}{\wordincldocanddateESPD} & \vcell{14.9mm}{24.9mm}{18.9mm}{\wordsign} & \vcell{11.9mm}{24.9mm}{18.9mm}{\worddate} \\
 			\hline % горизонтальная одинарная линия
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %1
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %1
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %2
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %2
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %3
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %3
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %4
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %4
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %5
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %5
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %6
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %6
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %7
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %7
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %8
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %8
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %9
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %9
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %10
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %10
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %11
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %11
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %12
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %12
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %13
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %13
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %14
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %14
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %15
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %15
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %16
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %16
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %17
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %17
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %18
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %18
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %19
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %19
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %20
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %20
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %21
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %21
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %22
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %22
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %23
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %23
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %24
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %24
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %25
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %25
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %26
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %26
 			\hline
-			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %27
+			\cell{7.9mm}{7.9mm}{} & & & & & & & & & \\ %27
 			\hline
-			%			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %28
-			%			\hline
-			%			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %29
-			%			\hline
+%			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %28
+%			\hline
+%			\cell{7.5mm}{7.5mm}{} & & & & & & & & & \\ %29
+%			\hline
 		\end{tabular}
 	}
 }
@@ -1425,8 +1433,8 @@
 \begin{titlepage}
   \reversemarginpar
   \setlength{\marginparsep}{17mm}
-%  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftfull}}}
-  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftshort}}}
+  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftfull}}}
+%  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftshort}}}
 %  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftonlyfirstapp}}}
 %  \marginpar{\vskip -\topfield \hbox{\rotatebox{90}{\stampleftonlyrefnum}}}	
 %
