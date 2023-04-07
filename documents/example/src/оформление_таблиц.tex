@@ -98,77 +98,82 @@
 Пример таблицы, часто встречающийся в программной документации:
 
 {\tabletextsize
-\begin{longtable}[c]{| >{\centering}m{12mm} | >{\raggedright}m{53mm} | >{\centering}m{22mm} | >{\centering}m{15mm} | >{\raggedright}m{30mm} | >{\centering}m{18mm} |}
+%\begin{longtable}[c]{| >{\centering}m{12mm} | >{\raggedright}m{53mm} | >{\centering}m{22mm} | >{\centering}m{15mm} | >{\raggedright}m{30mm} | >{\centering}m{18mm} |}
+\begin{longtable}[c]{| >{\raggedright}m{\wtname} | >{\centering}m{\wtsymbol} | >{\centering}m{\wtunits} | >{\centering}m{\wtbounds} | >{\centering}m{\wtcomment} |}
 	%----------------------- преамбула ---------------------	
 	\caption{\normalsize Пример таблицы\hspace{25cm}}
 	\label{t:tab2} \\
 	\hline
-	\centering{Номер\\слова} & 
 	\centering{Наименование информации} & 
 	\centering{Условное\\обозначение} & 
 	\centering{Размер-\\ность} & 
 	\centering{Пределы\\изменения} & 
 	\centering{Примеча-\\ние} \tabularnewline
-	\hhline{|=|=|=|=|=|=|}
+	\hhline{|=|=|=|=|=|}
 	\endfirsthead % Конец заголовка на 1 странице
-	\multicolumn{6}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
+	\multicolumn{5}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
 	\hline
 	% Простой способ
 %	Номер слова & Наименование информации & Усл.~об. & Размерн. & Пределы изменения & Примеч. \tabularnewline
 	%
 	% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
-	\centering{Номер\\слова} & 
 	\centering{Наименование информации} & 
 	\centering{Условное\\обозначение} & 
 	\centering{Размер-\\ность} & 
 	\centering{Пределы\\изменения} & 
 	\centering{Примеча-\\ние} \tabularnewline
-	\hhline{|=|=|=|=|=|=|}
+	\hhline{|=|=|=|=|=|}
 	\endhead
 	\hline
-	\multicolumn{6}{r}{\tabletextsize см. далее}
+	\multicolumn{5}{r}{\tabletextsize см. далее}
 	\endfoot
 	\hline
 	\endlastfoot	
 	%------------------- табличные данные ------------------
 
-	1 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	2 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	3 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	4 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	5 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	6 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	7 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	8 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
 %
 %	\newpage % Принудительный перенос на новую страницу
 %
-	9 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	10 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	11 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	12 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	13 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	14 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	15 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	16 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	17 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	18 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	19 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-	20 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline		
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
 \end{longtable}
 }
 
@@ -220,7 +225,7 @@
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
-		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
+%		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
 		
 		\newpage % Принудительный перенос на новую страницу
 		
@@ -260,8 +265,7 @@
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
 		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
-		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline
-		~ & ~ & ~ \xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline				
+
 	\end{longtable}
 }
 

@@ -7,6 +7,7 @@
 % \author     Соболев А.А.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % Для сокращений nolist - без сокращений
 \usepackage{setspace}
 \usepackage{fontspec}
 \usepackage{cite} % Для цитирования
@@ -16,6 +17,7 @@
 \usepackage{listings} % Для листингов исходного кода
 \usepackage{hhline} % Для двойной линии отчерка в заголовках таблиц
 \usepackage{color} % Цвет для листингов
+%\usepackage{xcolor} % Цвет для листингов
 \usepackage{stackengine}
 \usepackage{amssymb}
 \usepackage{bigdelim}
@@ -27,12 +29,13 @@
 %]{biblatex}
 \usepackage{cite}
 
-\usepackage[group-digits=false, output-decimal-marker={.}]{siunitx} % Для лёгкой замены разделителя целой и дробной частей (точка/запятая) писать \num{0.5} и тогда автоматом точка будет заменена на запятую, если выставить output-decimal-marker={.}
+%\usepackage[group-digits=false, output-decimal-marker={.}]{siunitx} % Для лёгкой замены разделителя целой и дробной частей (точка/запятая) писать \num{0.5} и тогда автоматом точка будет заменена на запятую, если выставить output-decimal-marker={.}
+\usepackage{icomma} % Пакет подключает использование запятой как разделителя целой и дробной части, если он записан слитно
 
 %\usepackage{tocstyle}
 %\usetocstyle{standard}
 %\settocfeature{raggedhook}{\raggedright}
-
+%\usepackage{etoc}
 %\usepackage{titlesec}
 \usepackage{hyperref}
 \hypersetup{
@@ -40,16 +43,11 @@
 	colorlinks=false,
 	linktoc=all,
 	hypertexnames=false,
-	hidelinks = true,
+%	hidelinks = true,
 	bookmarks=true
-%	bookmarksnumbered=true
+	bookmarksnumbered=true
 }
 \usepackage{bookmark}
-
-%\usepackage{geometry}
-%\geometry{
-%	a4paper
-%}
 
 \newcommand{\intdelim}{,}%{;}%  разделитель интервала вида [0,360)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,9 +87,9 @@
 % Определение форматирования исходного кода в тексте документа
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Можно выделять исходники цветом, но зачем
-%\definecolor{dkgreen}{rgb}{0,0.5,0}
-%\definecolor{gray}{rgb}{0.5,0.5,0.5}
-%\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{drkgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
 \lstset{
 	frame=none,
 	language=C++,
@@ -107,13 +105,23 @@
 %	numberstyle=\tiny,
 %	stepnumber=1,
 %	numberstyle=\tiny\color{mauve},
+%	numberstyle=\color{mauve},
 %	keywordstyle=\color{blue},
-%	commentstyle=\color{dkgreen},
+%	commentstyle=\color{drkgreen},
 %	stringstyle=\color{mauve},
+%    listingname=qwerty,%\text{Листинг},
 	breaklines=true,
 	breakatwhitespace=true,
-	tabsize=3
+	tabsize=4,
+%	inputpath=../code
+	inputpath=code,
+	morekeywords={*,int8_t,uint8_t,int16_t,uint16_t,int32_t,uint32_t,int64_t,uint64_t,
+		function,class,prototype,union},
+%	xleftmargin=2em % левый отступ!
 }
+%
+\renewcommand\lstlistingname{Листинг} % Заглавие листинга
+%
 %% Поддержка русского языка в комментариях к исходному коду
 \makeatletter % see https://tex.stackexchange.com/a/320345
 \lst@InputCatcodes
@@ -163,27 +171,37 @@
 %
 %\AddEnumerateCounter{\realasbuk}{\russian@realalph}{щ}
 %\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Задание ширины полей для таблиц wt - width table
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\wtname{65mm}
+\def\wtsymbol{22mm}
+\def\wtunits{15mm}
+\def\wtbounds{30mm} %{35mm} % % Если правое пол 15 - то 30, если превое поле 10, то 35
+\def\wtcomment{18mm}
+\def\wttotal{\wtname+\wtsymbol+\wtunits+\wtbounds+\wtcomment}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Задание полей титульных страниц
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\productcodefull}{АБВГД.12345} % Код организации + Регистрационный код
-\newcommand{\programname}{<<Галактический транклюкатор>>} % Название программы
-\newcommand{\productname}{<<Шифр (название) изделия>>} % Шифр (название) изделия
-\newcommand{\algoname}{<<Аббревиатура алгоритма>>} % Сокращенное названия алгоритма
-\title{Изделие {\productname}\\Специальное программное обеспечение ПТУ\\Программный комплекс\\\programname} 
+\newcommand{\productcodefull}{АБВГ.12345} % Код организации + Регистрационный код
+\newcommand{\programname}{Галактический~транклюкатор} % Название программы
+\newcommand{\productname}{Шифр изделия} % Шифр (название) изделия
+\newcommand{\productnamefirst}{Шифр 1}
+\newcommand{\productnamesecond}{Шифр 2}
+\newcommand{\progr}{Комплекс программ \programname.}% Только для спецификации!
+\newcommand{\progrcomp}{Программа \programname.}% Только для спецификации!
+
+\title{ИЗДЕЛИЕ~{\productname}\\СПЕЦИАЛЬНОЕ~ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ~ПТУ\\Комплекс программ\\ \MakeUppercase\programname} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Отдельно для ИУЛ
-\iulproductname{Изделие \productname\\Специальное программное обеспечение ПТУ\\Программный комплекс\\\programname}
-\iulcontrolsumm{1234.5678.9012.3456}
-\iulversion{111}
-\iulnumoflastchange{222}
-\iulnote{~}
-\iuldeveloper{Разработчиков} % Разраб.
-\iulcheck{Проверялов} % Проверил
-\iulnormocontrol{Нормоконтролеров} % Н.контр
-\iulapproved{Утверждаев} % Утв.
-\firstapplication{АБВГД.12345} % Первое применение
+\firstapplication{АБВГ.123456.123} % Первое применение
 \referencenumber{} % Справ №
+% Установка титульников документа и ЛУ:
+\def\titlemode{2} % {} - короткий штамп, {1} - полный штамп, {2} - только перв. примен. {3} - только справ №
+\def\titlemodelu{} % {} - короткий штамп, {1} - полный штамп, {2} - только перв. примен. {3} - только справ №
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\organizationcode{01234} % Код организации
 %\registrationcode{56789} % Регистрационный код
 \productcode{\productcodefull} % Код организации + Регистрационный код
@@ -195,43 +213,50 @@
 % Фамилии, должности и т.д. для титульников
 %
 % СОГЛАСОВАНО
-\customerrank{Начальник\\межгалактической комиссии}
-\customername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
+\customerrank{Начальник~чего-то там\\~\\~} % На двух строках
+%\customername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
+\customername{А.Б.~Нонеймов} % \phantom - убирает видимость
 
 % УТВЕРЖДАЮ
-\chiefconstructorrank{Главный конструктор\\изделия \productname}
+\chiefconstructorrank{Главный конструктор\\изделия \productname\\начальник центра}
 \chiefconstructorname{А.Б.~Главный}
-
-\fromcustomerrank{От межгалактической комиссии}
+%
+\fromcustomerrank{От заказчика}
 \fromcustomername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
-
-\headofdepartmentrank{Начальник Центра}
-\headofdepartmentname{А.Б.~Чатланин}
-
-\deputyofchiefconstructorrank{Зам.~гл.~конструктора}
+%
+\deputyofchiefconstructorrank{Зам.~главного конструктора}%{Начальник ТО-34}
 \deputyofchiefconstructorname{А.Б.~Заместителев}
 %
-\developerrank{Разработчик}
+\developerrank{Разработчик}%{Инженер 1 кат.}
 \developername{А.Б.~Разработчиков}
 
-%\headoflaboratoryrank{Начальник лаборатории 777}
-%\headoflaboratoryname{А.Б.~Лабораториев}
-
 % Исполнитель(и)
-\authorname{А.Б.~Пацак}
+\authorname{А.Б.~Исполнителев}
 %%
 %\authori{А.Б.~Пацак1}
 %\authorii{А.Б.~Пацак2}
 
-\normocontrollerrank{Нормоконтроллер}
+\normocontrollerrank{Нормоконтролер}
 \normocontrollername{~}
 
 \year{2023}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Водяной знак
+%
 \usepackage{draftwatermark} % Использовать это! Не работает поверх рисунков, но их у нас мало 
-\SetWatermarkText{PREPRINT}
-\SetWatermarkLightness{0.8}
+\SetWatermarkText{PREPRINT}%{}%
+\SetWatermarkLightness{0.95}
 \SetWatermarkScale{0.8}
 \SetWatermarkHorCenter{0.65\paperwidth}
 \SetWatermarkVerCenter{0.55\paperheight}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Нумерация строк текста (для облегчения правки/редактирования)
+%
+\usepackage{lineno}
+\renewcommand\linenumberfont{\color{blue}\listingtextsize} %\listingtextsizesmall
+\linenumbers
+\makeatletter
+% Дополнительный отступ для листингов, чтобы нумерация строк кода не накладывалась на технологическую нумерацию текста
+\@ifpackageloaded{lineno}{\lstset{xleftmargin=2em}}{}
+\makeatother

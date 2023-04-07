@@ -9,22 +9,20 @@
 Текст нумерованного приложения. Формулы, рисунки, таблицы нумеруются заново в каждом приложении. Если приложение в документе одно, оно не нумеруется и это учитывает шаблон.
 
 Пример формул в приложении:
-\formuladelspace
 \begin{align}
 x = y+a, \label{eq:формула приложения 1_1}\\
 z = a+x, \label{eq:формула приложения 1_2}
 \end{align}
 
-\formulalist{\formuladelspace	
+\formulalistsec{	
 	\item[где] $x$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
 	\item[] $z$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
 	\item[] $a$\ndash коэффициент, вычисляемый так, что надо делать вложенное уточнение как именно по формуле, полученной в трудах великих математиков:	
-	\formuladelspace
 	\begin{align}
 	a = b + c,
 	\end{align} 	
 	
-	\formulalist{\formuladelspace		
+	\formulalistsec{		
 		\item[где] $b$\ndash коэффициент получаемый очень длинным;
 		\item[] $c$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
 	}
@@ -38,49 +36,51 @@ z = a+x, \label{eq:формула приложения 1_2}
 
 Пример ссылки на рисунки приложения без номера: см.~\ref{fig:приложение1-лена1}.
 
-\newpage
+%\newpage
 
 Пример таблицы в приложении:
 
 {\tabletextsize
-	\begin{longtable}[c]{| >{\centering}m{12mm} | >{\raggedright}m{53mm} | >{\centering}m{22mm} | >{\centering}m{15mm} | >{\raggedright}m{33mm} | >{\centering}m{18mm} |}
-		%----------------------- преамбула ---------------------	
-		\caption{\normalsize Пример таблицы\hspace{25cm}}
-		\label{t:таблица_приложения1} \\
-		\hline
-		\centering{Номер\\слова} & 
-		\centering{Наименование информации} & 
-		\centering{Условное\\обозначение} & 
-		\centering{Размер-\\ность} & 
-		\centering{Пределы\\изменения} & 
-		\centering{Примеча-\\ние} \tabularnewline
-		\hhline{|=|=|=|=|=|=|}
-		\endfirsthead % Конец заголовка на 1 странице
-		\multicolumn{6}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
-		\hline
-		% Простой способ
-		%	Номер слова & Наименование информации & Усл.~об. & Размерн. & Пределы изменения & Примеч. \tabularnewline
-		%
-		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
-		\centering{Номер\\слова} & 
-		\centering{Наименование информации} & 
-		\centering{Условное\\обозначение} & 
-		\centering{Размер-\\ность} & 
-		\centering{Пределы\\изменения} & 
-		\centering{Примеча-\\ние} \tabularnewline
-		\hhline{|=|=|=|=|=|=|}
-		\endhead
-		\hline
-		\multicolumn{6}{r}{\tabletextsize см. далее}
-		\endfoot
-		\hline
-		\endlastfoot	
-		%------------------- табличные данные ------------------
-		
-		1 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-		2 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-		3 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
-		4 & Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+\begin{longtable}[c]{| >{\raggedright}m{\wtname} | >{\centering}m{\wtsymbol} | >{\centering}m{\wtunits} | >{\centering}m{\wtbounds} | >{\centering}m{\wtcomment} |}
+	%----------------------- преамбула ---------------------	
+	\caption{\normalsize Пример таблицы\hspace{25cm}}
+	\label{t:таблица_приложения1} \\
+	\hline
+	\centering{Наименование информации} & 
+	\centering{Условное\\обозначение} & 
+	\centering{Размер-\\ность} & 
+	\centering{Пределы\\изменения} & 
+	\centering{Примеча-\\ние} \tabularnewline
+	\hhline{|=|=|=|=|=|}
+	\endfirsthead % Конец заголовка на 1 странице
+	\multicolumn{5}{l}{Продолжение таблицы \thetable} \\ % 6 - число колонок, по-другому не получается
+	\hline
+	% Простой способ
+	%	Номер слова & Наименование информации & Усл.~об. & Размерн. & Пределы изменения & Примеч. \tabularnewline
+	%
+	% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+	\centering{Наименование информации} & 
+	\centering{Условное\\обозначение} & 
+	\centering{Размер-\\ность} & 
+	\centering{Пределы\\изменения} & 
+	\centering{Примеча-\\ние} \tabularnewline
+	\hhline{|=|=|=|=|=|}
+	\endhead
+	\hline
+	\multicolumn{5}{r}{\tabletextsize см. далее}
+	\endfoot
+	\hline
+	\endlastfoot	
+	%------------------- табличные данные ------------------
+	
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
+%	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+%	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+%	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline	
+%	Контрольное слово & CW\textunderscore & б/р & \ndash & uint \tabularnewline\hline
 	\end{longtable}
 }
 
