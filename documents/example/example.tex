@@ -7,7 +7,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[exampledoc]{../espd}
+%\usepackage{algorithm,algpseudocode} % old style
 \input{../preamble} % Преамбула
+\input{../algo} % Алгоритмы
 \graphicspath{{./images/}} % Директория для картинок в тексте
 \begin{document} % Начало документа
 \clubpenalty=10000 % Это костыль против
@@ -19,7 +21,7 @@
 	\cleardoublepage
 	\phantomsection
 	\pdfbookmark[1]{Аннотация}{annotation}
-	\input{src/аннотация}
+	\input{src/аннотация.tex}
 }
 {
 	\cleardoublepage
@@ -29,12 +31,13 @@
 }
 %
 % Дальше пошли разделы
-\input{src/оформление_разделов} 
-\input{src/оформление_перечислений} 
-\input{src/оформление_иллюстраций} 
-\input{src/оформление_формул} 
-\input{src/оформление_таблиц} 
-\input{src/оформление_листингов}
+\input{src/оформление_разделов.tex} 
+\input{src/оформление_перечислений.tex} 
+\input{src/оформление_иллюстраций.tex} 
+\input{src/оформление_формул.tex} 
+\input{src/оформление_таблиц.tex} 
+\input{src/оформление_листингов.tex}
+\input{src/оформление_алгоритмов.tex}
 %
 % Перечень литературы
 \cleardoublepage

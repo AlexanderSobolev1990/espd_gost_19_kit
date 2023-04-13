@@ -1,0 +1,81 @@
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%% https://harrix.dev/blog/2013/algorithmicx-cyrillic/
+
+% Добавляем свои блоки
+\makeatletter
+\algblock[ALGORITHMBLOCK]{BeginAlgorithm}{EndAlgorithm}
+\algblock[BLOCK]{BeginBlock}{EndBlock}
+
+% Перевод данных об алгоритмах
+\renewcommand{\listalgorithmname}{Список алгоритмов}
+\floatname{algorithm}{Алгоритм}
+
+% Перевод команд псевдокода
+\algrenewcommand\algorithmicwhile{\textbf{Пока}}
+\algrenewcommand\algorithmicdo{\textbf{выполнять}}
+\algrenewcommand\algorithmicrepeat{\textbf{Повторять}}
+\algrenewcommand\algorithmicuntil{\textbf{Пока выполняется}}
+\algrenewcommand\algorithmicend{\textbf{Конец}}
+\algrenewcommand\algorithmicif{\textbf{Если}}
+\algrenewcommand\algorithmicelse{\textbf{иначе}}
+\algrenewcommand\algorithmicthen{\textbf{тогда}}
+\algrenewcommand\algorithmicfor{\textbf{Цикл}}
+\algrenewcommand\algorithmicforall{\textbf{Для всех}}
+\algrenewcommand\algorithmicfunction{\textbf{Функция}}
+\algrenewcommand\algorithmicprocedure{\textbf{Процедура}}
+\algrenewcommand\algorithmicloop{\textbf{Зациклить}}
+\algrenewcommand\algorithmicrequire{\textbf{Условия:}}
+\algrenewcommand\algorithmicensure{\textbf{Обеспечивающие условия:}}
+\algrenewcommand\algorithmicreturn{\textbf{Возвратить}}
+\algrenewtext{EndWhile}{\textbf{Конец цикла}}
+\algrenewtext{EndLoop}{\textbf{Конец цикла}}
+\algrenewtext{EndFor}{\textbf{Конец цикла}}
+\algrenewtext{EndFunction}{\textbf{Конец функции}}
+\algrenewtext{EndProcedure}{\textbf{Конец процедуры}}
+\algrenewtext{EndIf}{\textbf{Конец условия}}
+\algrenewtext{EndFor}{\textbf{Конец цикла}}
+\algrenewtext{EndAlgorithm}{\textbf{Конец алгоритма}}
+\algrenewtext{EndBlock}{\textbf{Конец блока}}
+\algrenewtext{BeginAlgorithm}{\textbf{Начало алгоритма}}
+\algrenewtext{BeginBlock}{\textbf{Начало блока. }}
+\algrenewtext{ElsIf}{\textbf{иначе если }}
+
+%\algrenewcommand{\algorithmiccomment}[1]{\hskip3em$\rightarrow$ #1}
+%\algrenewcommand{\algorithmiccomment}[1]{\hskip1em$//~$ #1}
+
+%% СЛЕДУЮЩИЙ КОД ДЛЯ ВЕРТИКАЛЬНЫХ ЛИНИЙ
+
+% start with some helper code
+% This is the vertical rule that is inserted
+\newcommand*{\algrule}[1][\algorithmicindent]{
+	\makebox[#1][l]{
+		\hspace*{.2em}% <------------- This is where the rule starts from
+		\vrule height .75\baselineskip depth .25\baselineskip
+	}
+}
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{
+	\ifnum \theALG@nested>0% is there anything to print
+	\ifx\ALG@text\ALG@x@notext% is this an end group without any text?
+	% do nothing
+	\else
+	\unskip
+	% draw a rule for each indent level
+	\ALG@printindent@tempcnta=1
+	\loop
+	\algrule[\csname ALG@ind@\the\ALG@printindent@tempcnta\endcsname]
+	\advance \ALG@printindent@tempcnta 1
+	\ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax
+	\repeat
+	\fi
+	\fi
+}
+% the following line injects our new indent handling code in place of the default spacing
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}{\ALG@printindent}{}{\errmessage{failed to patch}}
+\patchcmd{\ALG@doentity}{\item[]\nointerlineskip}{}{}{} % no spurious vertical space
+% end vertical rule patch for algorithmicx
+
+\makeatother

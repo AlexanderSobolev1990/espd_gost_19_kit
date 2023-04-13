@@ -243,20 +243,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Водяной знак
 %
-\usepackage{draftwatermark} % Использовать это! Не работает поверх рисунков, но их у нас мало 
-\SetWatermarkText{PREPRINT}%{}%
-\SetWatermarkLightness{0.95}
-\SetWatermarkScale{0.8}
-\SetWatermarkHorCenter{0.65\paperwidth}
-\SetWatermarkVerCenter{0.55\paperheight}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Нумерация строк текста (для облегчения правки/редактирования)
+%\usepackage{draftwatermark} % Использовать это! Не работает поверх рисунков, но их у нас мало 
+%\SetWatermarkText{PREPRINT}%{}%
+%\SetWatermarkLightness{0.95}
+%\SetWatermarkScale{0.8}
+%\SetWatermarkHorCenter{0.65\paperwidth}
+%\SetWatermarkVerCenter{0.55\paperheight}
 %
-\usepackage{lineno}
-\renewcommand\linenumberfont{\color{blue}\listingtextsize} %\listingtextsizesmall
-\linenumbers
-\makeatletter
-% Дополнительный отступ для листингов, чтобы нумерация строк кода не накладывалась на технологическую нумерацию текста
-\@ifpackageloaded{lineno}{\lstset{xleftmargin=2em}}{}
-\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Нумерация строк текста (для облегчения правки/редактирования)
+%%
+%\usepackage{lineno}
+%\renewcommand\linenumberfont{\color{blue}\listingtextsize} %\listingtextsizesmall
+%\linenumbers
+%\makeatletter
+%% Дополнительный отступ для листингов, чтобы нумерация строк кода не накладывалась на технологическую нумерацию текста
+%\@ifpackageloaded{lineno}{\lstset{xleftmargin=2em}}{}
+%\makeatother

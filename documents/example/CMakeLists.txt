@@ -10,6 +10,7 @@ INCLUDE(../../UseLATEX.cmake)
 SET(parts
     ../espd.cls # Класс настроек ЕСПД
     ../preamble.tex
+    ../algo.tex
     src/аннотация.tex
     src/аббревиатуры.tex
     src/оформление_разделов.tex
@@ -18,6 +19,7 @@ SET(parts
     src/оформление_формул.tex
     src/оформление_таблиц.tex
     src/оформление_листингов.tex
+    src/оформление_алгоритмов.tex
     src/приложение_1.tex
     src/приложение_2.tex
 )
