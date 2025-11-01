@@ -8,8 +8,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[exampledoc]{../espd}
 %\usepackage{algorithm,algpseudocode} % old style
-\input{../preamble} % Преамбула
 \input{../algo} % Алгоритмы
+\input{../preamble} % Преамбула
+\input{example_renew.tex} % Переопределение
+
 \graphicspath{{./images/}} % Директория для картинок в тексте
 \begin{document} % Начало документа
 \clubpenalty=10000 % Это костыль против
@@ -31,6 +33,7 @@
 }
 %
 % Дальше пошли разделы
+\input{src/введение.tex} 
 \input{src/оформление_разделов.tex} 
 \input{src/оформление_перечислений.tex} 
 \input{src/оформление_иллюстраций.tex} 
@@ -42,8 +45,7 @@
 % Перечень литературы
 \cleardoublepage
 \phantomsection
-\bibliography{bibliography}
-%
+\bibliography{../bibliography,../bibliography_gost19,../bibliography_gost2,../bibliography_gost7,../bibliography_sto}
 % Перечень сокращений
 \cleardoublepage
 \phantomsection

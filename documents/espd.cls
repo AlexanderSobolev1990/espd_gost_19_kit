@@ -46,6 +46,8 @@
 %\usepackage{color} % Цвет для листингов
 %\usepackage{amssymb}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \linespread{1.25}	% Это эквивалент 1,5 интервала в ворде
 %\renewcommand{\baselinestretch}{1.25}
@@ -232,6 +234,7 @@
 \def\wordimage{Рисунок} % fixed было "Рис."
 \def\wordrefimage{рис.~}
 \def\wordbibliography{Перечень использованных источников}
+\def\wordbibliographysecond{Источники, использованные при разработке}
 \def\wordempty{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Переменные
@@ -264,6 +267,7 @@
 \varempty{headoflaboratoryname}
 
 \varempty{developerrank} % Разработчик 
+\varempty{developerrankafter} % Разработчик в конце документа
 \varempty{developername}
 
 \varempty{normocontrollerrank} % Нормоконтролер
@@ -297,6 +301,9 @@
 \varempty{firstapplication}
 \varempty{referencenumber}
 \varempty{emptyvar}
+
+\varempty{bibtype} % если будет bibtype=1, то библиография включается как раздел нумерованный
+\varempty{bibtext} % если будет тут что-то написано, это будет вставлено перед перечнем литературы в разделе
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Согласно ГОСТ 19.101-77
 \DeclareOption{exampledoc}{
@@ -427,12 +434,31 @@
 %\vskip 1mm #2\\\vskip 1mm\rule{3cm}{0.1pt}~#1\\\vskip 1mm \wordopenquote\rule{8mm}{0.1pt}\wordclosequote~\rule{3cm}{0.1pt} \@year~\wordyear\\\vskip 5mm
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Вставляет должность и место для подписи для исполнителя без проверки на пустоту строк
+% \titleauthorrawnodate{author}{authorrank}
+\def\titleauthorrawnodate#1#2{
+	% Без подчерка для подписи
+	%\vskip 1mm \raggedright{#2}\\ \raggedleft{\vskip 1mm\hphantom{placeforsigning}~#1}\\ \vskip 1mm \centering{\wordopenquote\rule{8mm}{0.1pt}\wordclosequote~\rule{3cm}{0.1pt} \@year~\wordyear}\\ \vskip 5mm
+	\vskip 1mm \raggedright{#2}\\ \raggedleft{\vskip 1mm\hphantom{placeforsigning}~#1}\\ \vskip 1mm %\centering{\wordopenquote\rule{5mm}{0.1pt}\wordclosequote~\rule{2.0cm}{0.1pt} \@year~\wordyear}\\ \vskip 5mm
+	
+	% C подчерком для подписи
+	%\vskip 1mm #2\\\vskip 1mm\rule{3cm}{0.1pt}~#1\\\vskip 1mm \wordopenquote\rule{8mm}{0.1pt}\wordclosequote~\rule{3cm}{0.1pt} \@year~\wordyear\\\vskip 5mm
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % То же, но делает проверку на пустоту строк
 % \titleauthor{author}{authorrank}
 \def\titleauthor#1#2{
   \if&#1#2&\else%
     \titleauthorraw{#1}{#2}
   \fi
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% То же, но делает проверку на пустоту строк
+% \titleauthornodate{author}{authorrank}
+\def\titleauthornodate#1#2{
+	\if&#1#2&\else%
+	\titleauthorrawnodate{#1}{#2}
+	\fi
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Модификация перевода строки для использования \centering и \MakeUppercase
@@ -446,16 +472,30 @@
 % \writeattachmentnotnum{description}{title}{label}
 \def\writeattachmentnonum#1#2#3{
   \refstepcounter{attachment}
+
 %   \hfill{\MakeUppercase{\wordattachment}}\vspace{-3mm} \\
 %	\null\hfill{#1}\vspace{3mm} \\
+
   	\hfill{\MakeUppercase{\textit{\wordattachment}}}\vspace{-2mm} \\ % Курсивом как в ГОСТ-19
-	\null\hfill\textit{#1}\vspace{5mm} \\ % Курсивом как в ГОСТ-19
+	\null\hfill\textit{#1}\vspace{4mm} \\ % Курсивом как в ГОСТ-19
 	%  \hfill{\MakeUppercase{\wordattachment~\theattachment}}\vspace{-3mm} \\ % Без курсива
 	%  \null\hfill{#1}\vspace{4mm} \\ % Без курсива
+%	{%
+%		\raggedleft%
+%		\begin{tabular}{l}
+%		{\MakeUppercase{\textit{\wordattachment}}}\vspace{-2mm} \tabularnewline
+%		{\textit{#1}} \tabularnewline
+%		\end{tabular}
+%		\vspace{6mm}\\
+%	}	
   {
-	\attachmentsize\centering\MakeUppercase{#2}\par
+	\attachmentsize\centering\MakeUppercase{#2}\par %Без курсива
+%	\vspace{3mm}
   }
-  \addcontentsline{toc}{attachment}{\wordattachment.~#2}
+
+%  \addcontentsline{toc}{attachment}{\wordattachment.~#2}
+%  \addcontentsline{toc}{attachment}{\wordattachment~#1~#2} % БЕЗ ТОЧКИ КАК ХОТЕЛ НОРМОКОНТРОЛЬ!
+  \addcontentsline{toc}{attachment}{\wordattachment.~#2} % C ТОЧКОЙ!
   \ifx&#3&\else
     \label{#3}
   \fi
@@ -465,15 +505,15 @@
 % \writeattachmentnum{description}{title}{label}
 \def\writeattachmentnum#1#2#3{
   \refstepcounter{attachment}
-%%
-%% Вариант выравнивания по простому по правой границе
-%%
+%%%
+%%% Вариант выравнивания по простому по правой границе
+%%%
   \hfill{\MakeUppercase{\textit{\wordattachment~\theattachment}}}\vspace{-2mm} \\ % Курсивом как в ГОСТ-19
   \null\hfill\textit{#1}\vspace{5mm} \\ % Курсивом как в ГОСТ-19
-%  \hfill{\MakeUppercase{\wordattachment~\theattachment}}\vspace{-3mm} \\ % Без курсива
-%  \null\hfill{#1}\vspace{4mm} \\ % Без курсива
-%
-%
+%%  \hfill{\MakeUppercase{\wordattachment~\theattachment}}\vspace{-3mm} \\ % Без курсива
+%%  \null\hfill{#1}\vspace{4mm} \\ % Без курсива
+%%
+%%
 % Вариант выравнивание как в ГОСТ 19.106 в конце
 %
 %{%
@@ -490,10 +530,15 @@
     \vspace{3mm}
   }
 % Если по ГОСТ-19
-  \addcontentsline{toc}{attachment}{\wordattachment~\theattachment.~#2}
+%  \addcontentsline{toc}{attachment}{\wordattachment~\theattachment.~#2}
 
 % Если как хочет наш нормоконтроль - без точки
 %  \addcontentsline{toc}{attachment}{\wordattachment~\theattachment~#2} 
+
+% Новый вариант
+%  \addcontentsline{toc}{attachment}{\wordattachment~\theattachment~#1~#2} % БЕЗ ТОЧКИ КАК ХОТЕЛ НОРМОКОНТРОЛЬ!
+  \addcontentsline{toc}{attachment}{\wordattachment~\theattachment~#1.~#2} % С ТОЧКОЙ
+
   \ifx&#3&\else
     \label{#3}
   \fi  
@@ -646,8 +691,10 @@
       {According to GOST 19.106-78, section title can not be empty}
   \fi
   \refstepcounter{section}
+	\newpage % Раздел с новой страницы!
+%	\vspace{1cm}
   \writesection{\numsection~#1}  
-  \addcontentsline{toc}{section}{\numsection~#1}
+  \addcontentsline{toc}{section}{\numsection~#1}  
 }
 \newcommand{\subsection}[1]{
   \ifx&#1&
@@ -701,6 +748,8 @@
 	\fi
 	\refstepcounter{section}
 	\pdfbookmark[section]{\numsection~#1}{\thepage}
+	\newpage % Раздел приложения с новой страницы!
+%	\vspace{1cm}
 	\writesection{\numsection~#1}  
 	%	\addcontentsline{toc}{section}{\numsection~#1}
 }
@@ -866,6 +915,14 @@
 	\leftstamptextsize
 %	\raggedright
 }
+% Толстые линии
+\def\stampfontstylebold{%
+	\setlength{\arrayrulewidth}{0.5mm}
+	\setlength{\tabcolsep}{0mm}
+	\leftstamptextsize
+	%	\raggedright
+}
+
 \newcommand{\stampleftfull}{
 	\stampfontstyle
 	\begin{tabular}{|p{24.9mm}|p{34.9mm}|p{24.9mm}|p{24.9mm}|p{34.9mm}|p{21.9mm}|p{59.9mm}|p{59.9mm}|}
@@ -886,6 +943,24 @@
 }
 \newcommand{\stampleftshort}{
 	\stampfontstyle
+	\begin{tabular}{|p{24.9mm}|p{34.9mm}|p{24.9mm}|p{24.9mm}|p{34.9mm}|p{21.9mm} p{60mm} p{60mm}}
+		\cline{1-5}
+		\cellleft{24.9mm}{5mm}{~\wordoriginvnumber} & 
+		\cellleft{34.9mm}{5mm}{~\wordsignanddate} & 
+		\cellleft{24.9mm}{5mm}{~\wordinstinvnumber} & 
+		\cellleft{24.9mm}{5mm}{~\wordduplinvnumber} & 
+		\cellleft{34.9mm}{5mm}{~\wordsignanddate} &
+		\cellleft{21.9mm}{5mm}{} & 
+		\cell{60mm}{5mm}{} &
+		\cell{60mm}{5mm}{} \\
+		\cline{1-5}
+		\cell{24.9mm}{7mm}{} & & & & & & & \\
+		\cline{1-5}
+	\end{tabular}
+	\setlength{\tabcolsep}{\tabmarg}
+}
+\newcommand{\stampleftshortbold}{
+	\stampfontstylebold
 	\begin{tabular}{|p{24.9mm}|p{34.9mm}|p{24.9mm}|p{24.9mm}|p{34.9mm}|p{21.9mm} p{60mm} p{60mm}}
 		\cline{1-5}
 		\cellleft{24.9mm}{5mm}{~\wordoriginvnumber} & 
@@ -2118,10 +2193,37 @@
 	\stepcounter{page}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Подписи в конце текста документа (для ТЗ)
+\newcommand{\makeaftersignatures}{
+\begin{tabular}{c c c}
+	\parbox[t]{0.4\textwidth}{\raggedright
+		~
+%		% левая колонка:
+%		\if& \@headofdepartmentname &	    
+%		%&
+%		\else
+%		\titleauthor{\@fromcustomername}{\@fromcustomerrank}%} &                       	
+%		\fi
+	}
+	
+	% Центральная фантомная для выравнивания
+	\parbox[t]{0.08\textwidth}{\phantom{1}} &
+	
+	\parbox[t]{0.4\textwidth}{\raggedright    
+		% правая колонка:		
+		\titleauthornodate{\@developername}{\@developerrankafter} 				
+	}
+\end{tabular}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Содержание
 \newcommand\@pnumwidth{1em}
 \newcommand\@tocrmarg{4em}
-\newcommand\@dotsep{4}
+%
+%\newcommand\@dotsep{4} % расстояние между точками оглавления, очевидно в точках
+%\newcommand\@dotsep{2}
+\newcommand\@dotsep{0.01} % чтобы как в ворде...
+%
 \setcounter{tocdepth}{4}
 \newcommand\tableofcontents{
   \newpage
@@ -2152,6 +2254,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Иллюстрация
 % \illustration[title][description][scale]{file}[label]
+
+% перенес из под \def\illustration
+\newcounter{illustration}
+\renewcommand{\theillustration}{\wordrefimage\arabic{illustration}} % Без номера раздела
+%\renewcommand{\theillustration}{\wordrefimage\arabic{section}.\arabic{illustration}} % С номером раздела
+\newcommand{\theunderillustration}{\wordimage~\arabic{illustration}} % Без номера раздела
+
 \def\illustration[#1][#2][#3]#4[#5]{
   \refstepcounter{illustration}
   \vspace{2mm}
@@ -2178,18 +2287,21 @@
 %	    Если нумерация через точку как по ГОСТ 19	
 %		\picturetextsize\centering{\wordimage~\arabic{illustration}.~{#2}} 
 %       Если нумрация через дефис как хочет нормоконтроль
-		\picturetextsize\centering{\wordimage~\arabic{illustration}~--~{#2}}
+%		\picturetextsize\centering{\wordimage~\arabic{illustration}~--~{#2}} % Без номера раздела
+%		\picturetextsize\centering{\wordimage~\arabic{section}.\arabic{illustration}~--~{#2}} % C номером раздела
+
+		\picturetextsize\centering{\theunderillustration~--~{#2}}
     \fi
     \ifx&#5&\else
-      \label{#5} %      \label{img:#5}
+      \label{#5} % было     \label{img:#5}
+%      \label{\arabic{section}. #5} % было
     \fi  
   \end{center}
 
   \vspace{2mm}
   \par % конец параграфа
 }
-\newcounter{illustration}
-\renewcommand{\theillustration}{\wordrefimage\arabic{illustration}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Картинка
 % \image[scale]{file}
@@ -2282,12 +2394,33 @@
 \newenvironment{thebibliography}[1]
 {
 	\newpage
-  	\writesection{\wordbibliography}
+%
+%  	\writesection{\wordbibliography}
+%    \addcontentsline{toc}{attachment}{\wordbibliography} % Переставлено сюда
+%	
+%	\ifthenelse{\equal{\@typecode}{81}}{
+	\ifthenelse{\equal{\@bibtype}{1}}{
+		\section{\wordbibliographysecond}
+	}{
+		\writesection{\wordbibliography} % В противном случае стандартная библиография
+		\addcontentsline{toc}{attachment}{\wordbibliography}
+	}
+	%
+	% Вставка текста из переменной
+	\ifthenelse{\equal{\@bibtext}{}}{
+		% Если переменная пуста
+		% Ничего не делаем
+	}{
+		% Если переменная не пуста, вставляем текст
+		{\@bibtext} % Вставляем текст курсивом или другим нужным форматом
+	}
+  	%
   	\list{\@biblabel{\@arabic\c@enumiv}}
     {%
      % Читерство
      %
-     \itemindent -7mm	
+%     \itemindent -7mm	
+	 \itemindent -5mm		
 	 \labelsep 2mm	
      %
      % Штатный вариант
@@ -2295,13 +2428,14 @@
 %     \settowidth\labelwidth{\@biblabel{#1}}
 %     \leftmargin\labelwidth
 %     \advance\leftmargin\labelsep
+     %
      \usecounter{enumiv}
      \let\p@enumiv\@empty
      \renewcommand\theenumiv{\@arabic\c@enumiv}}
 }
 {
   \endlist
-  \addcontentsline{toc}{attachment}{\wordbibliography}
+%  \addcontentsline{toc}{attachment}{\wordbibliography}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Вставка в начале документа --> вынесено отдельной командой
@@ -2391,7 +2525,7 @@
 		\renewcommand{\baselinestretch}{0.6}\selectfont  
 %		\setlength{\tabcolsep}{0mm}	
 %		\marginpar{\vskip -2.5cm \hbox{\rotatebox{90}{\stampleftshort}}}
-		\marginpar{\vskip -3.0cm \hbox{\rotatebox{90}{\stampleftshort}}}
+		\marginpar{\vskip -3.5cm \hbox{\rotatebox{90}{\stampleftshortbold}}}
 	}
 	% Основная таблица ИУЛ
 	\reversemarginpar

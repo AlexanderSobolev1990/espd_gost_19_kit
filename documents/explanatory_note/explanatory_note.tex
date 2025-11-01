@@ -7,20 +7,33 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[explanatorynote]{../espd}
+\newboolean{useacrolist}
+\setboolean{useacrolist}{true}
+%\setboolean{useacrolist}{false}
+\ifthenelse{\boolean{useacrolist}}{%	
+	\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}{%
+	\usepackage[printonlyused,nolinebreak,nohyperlinks,nolist]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}
 \input{../preamble} % Преамбула
-\graphicspath{{./images/}} % Директория для картинок в тексте
+\graphicspath{{../images/}} % Директория для картинок в тексте
 \begin{document} % Начало документа
 \clubpenalty=10000 % Это костыль против
 \widowpenalty=10000 % "висячих" строк
 \righthyphenmin=200 % Избавляемся
 {\sloppy % от переносов слов
+% Определяем переменную для управления цитирования списка литературы
+\newboolean{citemode}
+\setboolean{citemode}{true}
+%\setboolean{citemode}{false}
+%	
 \makelisttitle{\titlemode} % Титульный лист
-{
-	\cleardoublepage
-	\phantomsection
-	\pdfbookmark[1]{Аннотация}{annotation}
-	\input{src/аннотация}
-}
+%{
+%	\cleardoublepage
+%	\phantomsection
+%	\pdfbookmark[1]{Аннотация}{annotation}
+%	\input{src/аннотация.tex} % Допускается в пояснительной записке анотацию не делать!
+%}
 {
 	\cleardoublepage
 	\phantomsection
@@ -29,20 +42,31 @@
 }
 %
 % Дальше пошли разделы
-\input{src/введение} 
-\input{src/назначение} 
-\input{src/технические_характеристики} 
-\input{src/технико_экономические_показатели} 
-%
-% Перечень литературы
-\cleardoublepage
-\phantomsection
-\bibliography{bibliography}
+\input{src/введение.tex} 
+\input{src/назначение.tex} 
+\input{src/технические_характеристики.tex} 
+\input{src/технико_экономические_показатели.tex} 
+
+% Перечень литературы как раздел, поскольку есть опция \bibtype{1}
+\ifthenelse{\boolean{citemode}}{
+	\bibtype{1} % библиография как раздел!
+	\bibtext{Программа разрабатывается на основании технического задания, утвержденного Главным конструктором изделия \productname.}
+	\cleardoublepage
+	\phantomsection
+	\bibliography{../bibliography,../bibliography_gost19}
+}{%else do nothing, no cite
+}
+% Приложение
+\input{src/перечень_функциональных_объектов.tex} 
 %
 % Перечень сокращений
+{
 \cleardoublepage
 \phantomsection
-\input{src/аббревиатуры}
+\input{../common/аббревиатуры.tex}
+}
+%
+
 %
 % Лист регистрации изменений по ЕСПД
 \registrationlistESPD 

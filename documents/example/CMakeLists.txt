@@ -25,7 +25,7 @@ SET(parts
 )
 ADD_LATEX_DOCUMENT(
     example.tex
-    BIBFILES bibliography.bib
+    BIBFILES ../bibliography.bib ../bibliography_gost19.bib
     IMAGE_DIRS images
     INPUTS ${parts}    
 )

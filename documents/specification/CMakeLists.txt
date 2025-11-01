@@ -20,7 +20,7 @@ add_custom_command(
         TARGET specification
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_SOURCE_DIR}/build/documents/specification/specification.pdf
-                ${CMAKE_SOURCE_DIR}/output/спецификация.pdf)
+                "${CMAKE_SOURCE_DIR}/output/АБВГ.ХХХХХ-01.pdf") # кавычки из-за пробела
 
 # Лист утверждения отдельно:
 SET(parts_lu
@@ -37,5 +37,5 @@ add_custom_command(
         TARGET specification
         COMMAND ${CMAKE_COMMAND} -E copy
                 ${CMAKE_SOURCE_DIR}/build/documents/specification/specification_lu.pdf
-                ${CMAKE_SOURCE_DIR}/output/ЛУ/спецификация_лу.pdf)
+                "${CMAKE_SOURCE_DIR}/output/АБВГ.ХХХХХ-01-ЛУ.pdf") # кавычки из-за пробела
 

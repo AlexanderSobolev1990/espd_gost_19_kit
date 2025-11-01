@@ -1,6 +1,8 @@
 /bin
 /build
-##/output
+#/output
+/documents/text_program/АБВГ.ХХХХХ-01 12 01
+/documents/explanatory_note/code/functional_objects.txt
 CMakeLists.txt.user
 
 ## Core latex/pdflatex auxiliary files:

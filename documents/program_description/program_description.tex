@@ -7,19 +7,35 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[programdescription]{../espd}
+%%%%
+% Настройка вкл/выкл перечня сокращений в конце документа
+\newboolean{useacrolist}
+%\setboolean{useacrolist}{true}
+\setboolean{useacrolist}{false}
+\ifthenelse{\boolean{useacrolist}}{%	
+\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}{%
+\usepackage[printonlyused,nolinebreak,nohyperlinks,nolist]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}
+%%%%
 \input{../preamble} % Преамбула
-\graphicspath{{./images/}} % Директория для картинок в тексте
+\graphicspath{{../images/}} % Директория для картинок в тексте
 \begin{document} % Начало документа
 \clubpenalty=10000 % Это костыль против
 \widowpenalty=10000 % "висячих" строк
 \righthyphenmin=200 % Избавляемся
 {\sloppy % от переносов слов
+% Определяем переменную для управления цитирования списка литературы
+\newboolean{citemode}
+%\setboolean{citemode}{true}
+\setboolean{citemode}{false}
+%	
 \makelisttitle{\titlemode} % Титульный лист
 {
 	\cleardoublepage
 	\phantomsection
 	\pdfbookmark[1]{Аннотация}{annotation}
-	\input{src/аннотация}
+	\input{src/аннотация.tex}
 }
 {
 	\cleardoublepage
@@ -29,22 +45,26 @@
 }
 %
 % Дальше пошли разделы
-\input{src/общие_сведения} 
-\input{src/функциональное_назначение} 
-\input{src/описание_логической_структуры} 
-\input{src/используемые_технические_средства} 
-\input{src/вызов_и_загрузка} 
-\input{src/входные_и_выходные_данные} 
+\input{src/общие_сведения.tex} 
+\input{src/функциональное_назначение.tex} 
+\input{src/описание_логической_структуры.tex} 
+\input{src/используемые_технические_средства.tex} 
+\input{src/вызов_и_загрузка.tex} 
+\input{src/входные_и_выходные_данные.tex}
 %
-% Перечень литературы
-\cleardoublepage
-\phantomsection
-\bibliography{bibliography}
-%
+{
 % Перечень сокращений
 \cleardoublepage
 \phantomsection
-\input{src/аббревиатуры}
+\input{../common/аббревиатуры.tex}
+}
+% Перечень литературы
+\ifthenelse{\boolean{citemode}}{
+	\cleardoublepage
+	\phantomsection
+	\bibliography{../bibliography,../bibliography_gost19}	
+}{%else do nothing, no cite
+}
 %
 % Лист регистрации изменений по ЕСПД
 \registrationlistESPD 

@@ -1,0 +1,112 @@
+Выходные данные комплекса состоят из следующих структур данных:
+\begin{enumerate}
+	\item[--] заголовок;
+	\item[--] выходные данные;
+	\item[--] массив ка-цэ.
+\end{enumerate}
+
+Структуры данных приведены в таблицах ниже.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Структура данных
+%
+%\subsubsection{Выходные данные }
+%\vspace{0.5cm}
+{\tabletextsize
+\begin{longtable}[c]{| >{\raggedright}m{\wtname} | >{\centering}m{\wtsymbol} | >{\centering}m{\wtunits} | >{\centering}m{\wtbounds} | >{\centering}m{\wtcomment} |}
+		%----------------------- преамбула ---------------------	
+		\caption{\normalsize Структура выходных данных\hspace{25cm}}
+		\label{t:Выходные_данные} \\
+		\hline
+		\centering{Наименование информации} & 
+		\centering{Условное\\обозначение} & 
+		\centering{Размер-\\ность} & 
+		\centering{Пределы\\изменения} & 
+		\centering{Примеча-\\ние} \tabularnewline
+		\hhline{|=|=|=|=|=|}
+		\endfirsthead % Конец заголовка на 1 странице
+		\multicolumn{5}{l}{\textit{Продолжение таблицы \thetable}} \\ 
+		\hline	
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		\centering{Наименование информации} & 
+		\centering{Условное\\обозначение} & 
+		\centering{Размер-\\ность} & 
+		\centering{Пределы\\изменения} & 
+		\centering{Примеча-\\ние} \tabularnewline
+		\hhline{|=|=|=|=|=|}
+		\endhead
+		\hline
+		%		\multicolumn{5}{r}{\tabletextsize см. далее}
+		\endfoot
+		\hline
+		\endlastfoot	
+		%------------------- табличные данные ------------------		
+		Время привязки пацаков & $Time$ & c & $0$\mbdash$(2^{32}-1)$ & uint32 \tabularnewline\hline		
+		%		
+%		\multicolumn{5}{|l|}%
+%		{%
+%			\setstretch{0.7}%
+%			%		\hspace{-1mm}% Добавление абзацного отступа (откуда он взялся - хз)
+%			\tabletextsize%
+%			\note Размер структуры 36 байт.
+%		} \tabularnewline\hline
+	\end{longtable}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Структура ка-цэ
+%
+\newpage
+{\tabletextsize
+\begin{longtable}[c]{| >{\raggedright}m{\wtname} | >{\centering}m{\wtsymbol} | >{\centering}m{\wtunits} | >{\centering}m{\wtbounds} | >{\centering}m{\wtcomment} |}
+		%----------------------- преамбула ---------------------	
+		\caption{\normalsize Структура ка-цэ\hspace{25cm}}
+		\label{t:Выходные_данные_ка-цэ} \\
+		\hline
+		\centering{Наименование информации} & 
+		\centering{Условное\\обозначение} & 
+		\centering{Размер-\\ность} & 
+		\centering{Пределы\\изменения} & 
+		\centering{Примеча-\\ние} \tabularnewline
+		\hhline{|=|=|=|=|=|}
+		\endfirsthead % Конец заголовка на 1 странице
+		\multicolumn{5}{l}{\textit{Продолжение таблицы \thetable}} \\ 
+		\hline	
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		\centering{Наименование информации} & 
+		\centering{Условное\\обозначение} & 
+		\centering{Размер-\\ность} & 
+		\centering{Пределы\\изменения} & 
+		\centering{Примеча-\\ние} \tabularnewline
+		\hhline{|=|=|=|=|=|}
+		\endhead
+		\hline
+		%		\multicolumn{5}{r}{\tabletextsize см. далее}
+		\endfoot
+		\hline
+		\endlastfoot	
+		%------------------- табличные данные ------------------		
+		Номер ка-цэ & $N$ & б/р & $1$\mbdash$(2^{32}-1)$ & uint32 \tabularnewline\hline		
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		Резерв & -- & -- & -- & uint32 \tabularnewline\hline
+		%
+%		\multicolumn{5}{|l|}%
+%		{%
+%			\setstretch{0.7}%
+%			%		\hspace{-1mm}% Добавление абзацного отступа (откуда он взялся - хз)
+%			\tabletextsize%
+%			\note Размер структуры N байт.
+%		} \tabularnewline\hline
+	\end{longtable}
+}

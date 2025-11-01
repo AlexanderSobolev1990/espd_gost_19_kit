@@ -8,11 +8,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[specification]{../espd}
 \input{../preamble} % Преамбула
-
-\graphicspath{{./images/}} % Директория для картинок в тексте
 %
 \def\endline{\xrowht[(3.5mm)]{3.5mm}\tabularnewline\hline} % окончание строки для краткости
-%\def\endline{\tabularnewline\hline} % окончание строки для краткости
 \def\emptyline{~ & ~ & ~ \endline} % пустая строка для краткости
 %
 \begin{document} % Начало документа
@@ -24,29 +21,23 @@
 %
 % Сама таблица спецификации:
 %
+
+% Хак для смещения полей
+\setlength{\hoffset}{-30.4mm} % Отступ равен 1 дюйм (25,4 мм) + значение \hoffset
+\setlength{\headsep}{7mm} % было 12, надо -5
 {
-	
-%\setlength{\oddsidemargin}{20mm}
-%\setlength{\evensidemargin}{10mm}
-%\setlength{\sidemargin}{20mm}
-%\setlength{\textwidth}{180mm} % Ширина области текста документа
-%\renewcommand{\ULdepth}{1.8pt}
-\normalsize %\tabletextsize % нормоконтроль хочет 14 шрифт...
-%\begin{longtable}[c]{|>{\raggedright}m{74mm}|>{\raggedright}m{64mm}|>{\raggedright}m{24mm}|}
-\vspace{-5mm} % Сдвижка вверх потому что сделали поле верхнее 30 мм вместо 25
-\reversemarginpar
-\setlength{\marginparsep}{5.2mm}
-\marginpar{	%
-%{%
-%	\vskip -5.0mm
-%	\setlength{\tabcolsep}{0mm}	
-\begin{longtable}[c]{|>{\raggedright}m{76mm}|>{\raggedright}m{65mm}|>{\raggedright}m{27mm}|}
+\renewcommand\baselinestretch{1.1} % Немного сожмем таблицу
+\renewcommand{\ULdepth}{1.8pt} % Глубина подчеркивания
+\normalsize%\tabletextsize
+%\begin{longtable}[c]{|>{\raggedright}m{74mm}|>{\raggedright}m{63mm}|>{\raggedright}m{25mm}|}
+%\begin{longtable}[c]{|>{\raggedright}m{74mm}|>{\raggedright}m{60mm}|>{\raggedright}m{28mm}|}
+\begin{longtable}[c]{|>{\raggedright}m{75mm}|>{\raggedright}m{65mm}|>{\raggedright}m{27mm}|}
 	%----------------------- преамбула ---------------------	
 	\hline
 	\xrowht[(6mm)]{6mm}\centering{Обозначение} & 
 	\xrowht[(6mm)]{6mm}\centering{Наименование} & 
 	\xrowht[(6mm)]{6mm}\centering{Примечание} \tabularnewline
-	\hhline{|=|=|=|}
+	\hhline{|=|=|=|}\hline
 	\endfirsthead % Конец заголовка на 1 странице
 	\hline
 	% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
@@ -55,62 +46,56 @@
 	\xrowht[(6mm)]{6mm}\centering{Примечание} \tabularnewline
 	\hhline{|=|=|=|}
 	\endhead
-%	\hline
-%	\endfoot
-%	\hline
-%	\endlastfoot	
+	\hline
+	\endfoot
+	\hline
+	\endlastfoot	
 	%------------------- табличные данные ------------------		
+
+%	\productcodefull-01-ЛУ & Лист утверждения & ~ \endline
 	\emptyline
 	~ & \centering{\uline{Документация}} & ~ \endline
 	\emptyline
-	\productcodefull-01 13 01    & Программный комплекс\\\programname\\Описание программы & ~ \endline	
-	\productcodefull-01 13 01-ЛУ & Программный комплекс\\\programname\\Описание программы\\Лист утверждения & Размножать по~указанию\endline	
-	\productcodefull-01 31 01    & Программный комплекс\\\programname\\Описание применения & ~ \endline	
-	\productcodefull-01 31 01-ЛУ & Программный комплекс\\\programname\\Описание применения\\Лист утверждения & Размножать по указанию\endline	
-	\productcodefull-01 32 01    & Программный комплекс\\\programname\\Руководство системного программиста & ~ \endline	
-	\productcodefull-01 32 01-ЛУ & Программный комплекс\\\programname\\Руководство системного программиста \\Лист утверждения & Размножать по указанию\endline
-	\productcodefull-01 34 01    & Программный комплекс\\\programname\\Руководство оператора & ~ \endline	
-	\productcodefull-01 34 01-ЛУ & Программный комплекс\\\programname\\Руководство оператора \\Лист утверждения & Размножать по указанию\endline
-	\productcodefull-01 51 01    & Программный комплекс\\\programname\\Программа и методика испытаний & ~ \endline	
-	\productcodefull-01 51 01-ЛУ & Программный комплекс\\\programname\\Программа и методика испытаний \\Лист утверждения & Размножать по указанию\endline
-	\productcodefull-01 81 01    & Программный комплекс\\\programname\\Пояснительная записка & ~ \endline	
-	\productcodefull-01 81 01-ЛУ & Программный комплекс\\\programname\\Пояснительная записка \\Лист утверждения & Размножать по указанию\endline		
+	\productcodefull-01-ЛУ       & Лист утверждения & Размножать по указанию\endline	
+	\productcodefull-01 13 01    & \progr\\Описание программы. & ~ \endline	
+	\productcodefull-01 13 01-ЛУ & \progr\\Описание программы.\\Лист утверждения. & Размножать по указанию\endline	
+	\productcodefull-01 31 01    & \progr\\Описание применения. & ~ \endline	
+	\productcodefull-01 31 01-ЛУ & \progr\\Описание применения.\\Лист утверждения. & Размножать по указанию\endline	
+	\productcodefull-01 32 01    & \progr\\Руководство системного программиста. & ~ \endline	
+	\productcodefull-01 32 01-ЛУ & \progr\\Руководство системного программиста. \\Лист утверждения. & Размножать по указанию\endline
+	\productcodefull-01 34 01    & \progr\\Руководство оператора. & ~ \endline	
+	\emptyline
+	\emptyline
+	\productcodefull-01 34 01-ЛУ & \progr\\Руководство оператора. \\Лист утверждения. & Размножать по указанию\endline
+	\productcodefull-01 51 01    & \progr\\Программа и методика испытаний. & ~ \endline	
+	\productcodefull-01 51 01-ЛУ & \progr\\Программа и методика испытаний. \\Лист утверждения. & Размножать по указанию\endline
+	\productcodefull-01 81 01    & \progr\\Пояснительная записка. & ~ \endline	
+	\productcodefull-01 81 01-ЛУ & \progr\\Пояснительная записка. \\Лист утверждения. & Размножать по указанию\endline		
 	\emptyline
 	~ & \centering{\uline{Компоненты}} & ~ \endline
 	\emptyline	
-	\productcodefull-01 12 01-ДЭ & Программный комплекс\\\programname\\Текст программы & Документ электронный \endline
-	\productcodefull-01 91 01-УЛ & Информационно\sdash \\удостоверяющий лист & ~ \endline
+	\productcodefull-01 12 01-ДЭ & \progrcomp\\Текст программы. & Документ электронный\endline
+	\productcodefull-01 12 01-УЛ & Информационно\sdash\\удостоверяющий лист & ~ \endline
 	\emptyline
 	\emptyline
 	\emptyline
 	\emptyline
 	\emptyline
-	\emptyline
-	\emptyline
-	\emptyline
-	\emptyline
-	\emptyline
-	\emptyline
-	\emptyline
-%	\newpage % Принудительный перенос на новую страницу
-	\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline
-\emptyline			
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\emptyline
+%	\newpage % Принудительный перенос на новую страницу			
 \end{longtable}
-}
 }
 %
 % Лист регистрации изменений по ЕСПД
 \registrationlistESPD 
-\registrationlistESKD 
 }
 \end{document}

@@ -1,251 +1,303 @@
 \newpage
 \section{Оформление формул}
 
-В данном разделе приводится пример оформления формул по п.~2.4 ГОСТ~19.106 \cite{gost19106}.
+В данном разделе приводится пример оформления формул по п.~2.4 ГОСТ~19.106 \cite{gost_19_106_Требования_к_программным_документам_выполненным_печатным_способом}.
 
-\subsection{Простые примеры}
+\subsection{Простые примеры вставки формул}
 
-\subsubsection{Формула без присвоения порядкового номера}
+\subsubsection{Формула в тексте и без порядкового номера}
 
 Пример формулы, вставляемой в тексте без присвоения порядкового номера: формула квадратного многочлена: $f(x) = ax^2 + bx + c$, где $a$\ndash первый (старший) коэффициент, $b$\ndash второй (средний) коэффициент, $c$\ndash свободный член.
 
-\subsubsection{Формула с автоприсвоением порядкового номера и без удаления пробелов}
-Пример формул с присвоением порядкового номера и без удаления пробелов:
+\subsubsection{Отдельная формула с порядковым номером}\label{subsubsec:Отдельная формула с порядковым номером}
+Пример формулы, вставляемой отдельной строкой с присвоением порядкового номера:
 \begin{align}
-	x = y+a, \label{eq:формула 1}\\
-	z = a+x, \label{eq:формула 2}
+	x = y + z, \label{eq:формула 1}
 \end{align}
 
 \formulalistsec{	
-\item[где] $x$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-\item[] $z$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-\item[] $a$\ndash коэффициент, вычисляемый так, что надо делать вложенное уточнение как именно по формуле, полученной в трудах великих математиков:	
-	\begin{align}
-	a = b + c,
-	\end{align} 
-
-	\formulalistsec{
-	\item[где] $b$\ndash коэффициент получаемый очень длинным;
-	\item[] $c$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-	}
+\item[где] $x$\ndash сумма, результат сложения слагаемых $y$ и $z$;
+\item[] $y$\ndash первое слагаемое;
+\item[] $z$\ndash второе слагаемое.	
 }
 
-Пример ссылки на формулу: см. формулу (\ref{eq:формула 1}).
+Ссылка на формулу оформляется в круглых скобках: см. формулу (\ref{eq:формула 1}).
 
-\newpage
-%\subsubsection{Формула с автоприсвоением порядкового номера и с удалением пробелов}
-%Пример формул с присвоением порядкового номера и с удалением пробелов:
-%\formuladelspace
-%\begin{align}
-%x = y+a, \label{eq:формула 11}\\
-%z = a+x, \label{eq:формула 21}
-%\end{align}
-%
-%\formulalist{
-%	\formuladelspace
-%	\item[где] $x$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-%	\item[] $z$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-%	\item[] $a$\ndash коэффициент, вычисляемый так, что надо делать вложенное уточнение как именно по формуле, полученной в трудах великих математиков:
-%	\formuladelspace
-%	\begin{align}
-%	a = b + c,
-%	\end{align} 	
-%	
-%	\formulalist{\formuladelspace
-%		\item[где] $b$\ndash коэффициент получаемый очень длинным;
-%		\item[] $c$\ndash коэффициент, получаемый очень длинным способом, таким длинным, что его описание не влезает в одну строку и приходится делать перенос;
-%	}
-%}
+Формулы, вставленные на отдельных строках (и, как правило, с последующей расшифровкой входящих в них компонентов), имеют сквозную нумерацию арабскими цифрами. Такие формулы выравниваются по центру страницы, после формул ставится запятая (если далее идет расшифровка переменных, входящих в нее) или точка (если расшифровка не требуется и формула является логическим окончанием предложения) или ничего не ставится (если расшифровки переменных также нет, а далее после формулы следует текст, по смыслу являющийся продолжением текста до момента вставки формулы). Пример приводится ниже.
 
-\paragraph{Примеры различных математических знаков и символов}
+Стандартная линейная дискретная оптимизационная задача, широко известная как <<задача о назначениях>> (частный случай транспортной задачи, задача Монжа\nbdash Канторовича) формулируется следующим образом:
 
-Приведем несколько примеров.
+обеспечить максимум
+\begin{align}
+\textnormal{max}{\left[ \sum_{k=1}^{K}\sum_{l=1}^{L} (C_{k,l} \times \psi_{k,l}) \right]} \textbf{\text{(нет знака препинания!)}} \label{eq:Задача_о_назначениях}
+\end{align}	
+
+при ограничениях: \textbf{(ставится двоеточие!)}
+\begin{align}
+\sum_{k=1}^{K} C_{k,l} = \sum_{l=1}^{L} C_{k,l} = 1 \intdelim~C_{k,l} \in \{0,~1\}, \label{eq:Задача_о_назначениях_ограничения}
+\end{align}	
+
+\formulalistsec{
+	\item[где] $K$\ndash число <<работников>>;
+	\item[] $L$\ndash число <<работ>>; 
+	\item[] $C_{k,l}$\ndash полученное решение: массив, элемент которого содержит единицу, если $l$\sdash я работа назначена $k$\sdash му работнику, или ноль в противном случае.
+}
+
+Очень длинные формулы переносят на новую строку на знаках <<$+,-,\times$>>. \textbf{Недопустимо переносить формулы на новую строку знаке деления}.
+
+Перед формулой двоеточие ставят только тогда, когда этого требует построение текста, предшествующего формуле~\cite{sto_ПМ0_000_068_2015}. В частности, характерны следующие примеры:
 
 \begin{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Индексы:
-{\zerodisplayskips
+	\item формула для расчета имеет следующий вид \textbf{(двоеточие ставится)}:
 	\begin{align}
-	& A_1, \label{eq:ф1}\\
-	& A_{\text{нижний индекс}}, \label{eq:ф2}\\
-	& A^{\text{верхний индекс(он же - степень)}}, \label{eq:ф3}\\
-	& A_{\text{нижний индекс}}^{\text{верхний индекс(он же - степень)}}, \label{eq:ф4} \\
-	& P_0max. \label{eq:ф55}
+		a = b + c;
 	\end{align}	
-}%
-Отметим, что выравнивание в формулах (\ref{eq:ф1}\ndash \ref{eq:ф4}) идёт по центру \textit{группы}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Знак градуса:
-{\zerodisplayskips
-\begin{equation}
-X=5\degree.
-\end{equation}	
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-\item Матрицы (жириный шрифт без наклона):
-{\zerodisplayskips
-\begin{equation}
-	\matr{A},~\matr{B}_i^{-1},~\widetilde{\matr{C}}_i^{-1},~\overline{\boldsymbol{\sigma}}_i^{-1},~\matr{F\_Alarm}
-\end{equation}	
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Верхние символы над одиночными буквами:	
-{\zerodisplayskips
-\begin{equation}
-	\hat{\alpha_0},~\hat{A},~\tilde{B},~\bar{C},~\check{D},~\vec{E},~\hat{\mu}_{kl}^i.
-\end{equation}
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Простановка фигурных скобок (обозначение элемента вектора, например):	
-{\zerodisplayskips
-	\begin{equation}
-	\sigma_{ik}^{qw}\{ x \}=1.
-	\end{equation}
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Верхние символы над многобуквенными переменными:	
-{\zerodisplayskips
-	\begin{equation}
-	\widehat{\alpha},~\widehat{AB},~\widetilde{CD},~\overline{ABC},~\overrightarrow{DEF}.
-	\end{equation}
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Некоторые греческие буквы с учетом русской традиции:	
-{\zerodisplayskips
-	\begin{equation}
-	\alpha,\beta,\gamma,\phi,\epsilon,\theta. \label{eq:ф5}
-	\end{equation}
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Сумма, умножение, деление, дробь:
-{\zerodisplayskips
+	\item дальнешний расчет ведется по формуле (в конце стоит <<по формуле>>, \textbf{двоеточие НЕ ставится})
 	\begin{align}
-	\text{сумма:}\quad & A+B=C, \label{eq:ф6}\\
-	\text{умножение:}\quad & A\times B=C, \label{eq:ф7}\\
-	\text{деление через косую черту:}\quad & A/B=C, \label{eq:ф8}\\
-	\text{дробь (решение квадратного уравнения):}\quad & x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}, \label{eq:ф9}\\
-	\text{дробь (решение квадратного уравнения):}\quad & x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \label{eq:ф99}
-	\end{align}
-}%
+		d = e \times f.
+	\end{align}		
+\end{enumerate}
 
-Знак <<\&>> внутри формулы и конструкции \verb=\begin{align}...\end{align}= вызывает выравнивание по этому символу. 
+\newpage
+\subsection{Верстка формул в \LaTeX}
 
-Обратите внимание, повторная вставка формулы (\ref{eq:ф99}) вызывает автоматическое выравнивание по высоте.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Производная и интеграл:
-{\zerodisplayskips
-	\begin{equation}	
-	f'\quad f''\quad
-	\dot{f}\quad \ddot{f} \quad
-	\frac{d f}{d x}\quad
-	\frac{\partial f}{\partial x}
-	\int_0^{\infty}\quad
-	\int\limits_0^{\infty}.\quad
-	\label{eq:ф10}
-	\end{equation}
-}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Знак суммы:
-{\zerodisplayskips
-	\begin{equation}	
-	\sum_{i=1}^n a_i,\quad
-	\sum\nolimits_{i=1}^n b_i.
-	\label{eq:ф11}
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Перенос формул вручную c указанием места разделения и команды \verb=split=:
-{\zerodisplayskips
-	\begin{equation}	
-	\begin{split}
-	x&=1000+1100+{}\\
-	 &+1200+1300.
-	\end{split}
-	\label{eq:ф12}
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Cистема уравнений с фигурной скобкой (выравнивание по знаку <<=>>):
-{%\zerodisplayskips
-	\begin{equation}	
-	\left\{
-	\begin{aligned}
-	x^2+y^2&=7 \\
-	x+y & = 3. \\
-	\end{aligned}
-	\right.
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Cистема уравнений с фигурной скобкой (выравнивание по левому краю):
-{%\zerodisplayskips
-	\begin{equation}	
-	\left\{
-	\begin{aligned}
-	& x^2+y^2=7 \\
-	& x+y=3.
-	\end{aligned}
-	\right.
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Значение, зависящее от условий:
-{%\zerodisplayskips
-	\begin{equation}	
-	|\sin(x)|=
-	\begin{cases}
-	\sin(x), & 0<x<\pi, \\
-	-\sin(x), & \pi<x<2\pi.	
-	\end{cases}
-	\label{eq:ф13}
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Длина волны через частоту:
-{\zerodisplayskips
-	\begin{equation}	
-	\lambda=C/(Fr \times 10^3).
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Пример очень длинной формулы с переносом на 2 строки c выравниванием по знакам <<=>> и <<+>>:
-{%\zerodisplayskips
-	\begin{equation}
-	\begin{split}	
-	Vf_i&=X.V_i\times 0.5 \times (\cos((X.K_i - AzEndR_i)\times DgToRd) +{}\\
-	    &+\cos((X.K_i - AzEndT_i)\times DgToRd).
-	\label{eq:ф14}
-	\end{split}
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Еще пример очень длинной формулы с переносом на 3 строки c выравниванием по знакам <<=>> и <<+>>:
-{%\zerodisplayskips
-	\begin{equation}
-	\begin{split}	
-	ABCD&=X.V_i\times 0.5 \times (\cos((X.K_i - AzEndR_i)\times DgToRd) +{}\\
-	&+\cos((X.K_i - AzEndT_i)\times DgToRd)+{}\\
-	&+\cos((X.K_i - AzEndT_i)\times DgToRd).  
-	\label{eq:ф15}
-	\end{split}
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Пример автовыбора высоты скобок путем использования команд \verb=\left= и \verb=\right= соответственно:
-{\zerodisplayskips1324
-	\begin{equation}
-	f(x)=1+\left(\frac{1}{1-x^{2}}
-	\right)^3.
-	\end{equation}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item Пример многоэтажной дроби:
-{%\zerodisplayskips
-	\begin{equation}
-	X=\frac{\ln\left(\cfrac{A}{B}\right)\times \ln\left(\cfrac{C}{D}\right)}{\ln\left(\cfrac{E}{F} \right)\times \ln\left(\cfrac{G}{H} \right)}.
-	\end{equation}
-}
-%%%%%%%%
-\end{enumerate}	
+Верстка формул, наряду с версткой алгоритмов в псевдокоде, является ключевым моментом, ради которого Дональд Кнут и создал язык \LaTeX.
+Приведем примеры оформления различных случаев.
 
+\subsubsection{Верстка простой формулы в тексте}
+
+\begin{lstlisting}[caption=\raggedright{Простая формула в тексте}, frame=single, numbers=none]
+...формула квадратного многочлена: $f(x) = ax^2 + bx + c$, где...
+\end{lstlisting}
+
+\subsubsection{Верстка отдельной формулы с порядковым номером}
+
+Дополнительно присваивается метка, по которой в дальнейшем можно ссылаться на формулу по номеру. Приведем пример верстка формулы из п.\ref{subsubsec:Отдельная формула с порядковым номером}:
+
+\begin{lstlisting}[caption=\raggedright{Отдельная формула с порядковым номером}, frame=single, numbers=none]
+\begin{align}
+x = y + z, \label{eq:формула 1}
+\end{align}
+
+\formulalistsec{	
+\item[где] $x$\ndash сумма, результат сложения слагаемых $y$ и $z$;
+\item[] $y$\ndash первое слагаемое;
+\item[] $z$\ndash второе слагаемое.	
+}
+
+Ссылка на формулу оформляется в круглых скобках: см. формулу (\ref{eq:формула 1}).
+\end{lstlisting}
+
+\newpage
+\subsubsection{Верстка различных символов и математических знаков}
+
+\underline{Внимание!} При наборе формул для печати кириллицы необходимо набрать команду \lstinline|\text{текст на кириллице}|.
+
+{\tabletextsize
+	\begin{longtable}[c]{| >{\raggedright}m{50mm} | >{\raggedright}m{120mm} | }
+		%----------------------- преамбула ---------------------	
+		\caption{\normalsize Примеры верстки различных символов и математических знаков\hspace{25cm}}
+		\label{t:примеры_верстка} \\
+		\hline
+		\centering{Символ/математический знак} & 
+		\centering{Верстка \LaTeX} \tabularnewline
+		\hhline{|=|=|}
+		\endfirsthead % Конец заголовка на 1 странице
+		\multicolumn{2}{l}{\textit{Продолжение таблицы \thetable}} \\ 
+		\hline	
+		% Способ, при котором раздельно формуруется выравнивание заголовка и контетнта
+		\centering{Символ/метематический знак} & 
+		\centering{Верстка \LaTeX} \tabularnewline
+		\hhline{|=|=|}
+		\endhead
+		\hline
+		%		\multicolumn{5}{r}{\tabletextsize см. далее}
+		\endfoot
+		\hline
+		\endlastfoot	
+		%------------------- табличные данные ------------------				%
+		Числовой нижний индекс: $A_1$ & \lstinline|$A_1$| \tabularnewline\hline
+		$A_{\text{нижний индекс}}$ & \lstinline|$A_{\text{нижний индекс}}$| \tabularnewline\hline
+		$A^{\text{верхний индекс(степень)}}$ & \lstinline|$A^{\text{верхний индекс(степень)}}$| \tabularnewline\hline
+		$A_{\text{нижний индекс}}^{\text{верхний индекс(степень)}}$ & \lstinline|$A_{\text{нижний индекс}}^{\text{верхний индекс(степень)}}$| \tabularnewline\hline
+		Знак градуса: $\ldots\degree$ & \lstinline|$\ldots\degree$| \tabularnewline\hline
+		Греческие буквы: & ~ \tabularnewline
+		Альфа: $\alpha$ & \lstinline|$\alpha$| \tabularnewline
+		Бета: $\beta$ & \lstinline|$\beta$| \tabularnewline
+		Гамма: $\gamma$ & \lstinline|$\gamma$| \tabularnewline
+		Дельта: $\delta, \Delta$ & \lstinline|$\delta, \Delta$| \tabularnewline
+		Эпсилон: $\epsilon$ & \lstinline|$\epsilon$| \tabularnewline
+		Зета: $\zeta$ & \lstinline|$\zeta$| \tabularnewline
+		Эта: $\eta$ & \lstinline|$\eta$| \tabularnewline
+		Тетта: $\theta$ & \lstinline|$\theta$| \tabularnewline
+		Йота: $\iota$ & \lstinline|$\iota$| \tabularnewline
+		Каппа: $\kappa$ & \lstinline|$\kappa$| \tabularnewline
+		Лямбда: $\lambda, \Lambda$ & \lstinline|$\lambda, \Lambda$| \tabularnewline
+		Мю: $\mu$ & \lstinline|$\mu$| \tabularnewline
+		Ню: $\nu$ & \lstinline|$\nu$| \tabularnewline
+		Кси: $\xi$ & \lstinline|$\xi$| \tabularnewline
+		Пи: $\pi, \Pi$ & \lstinline|$\pi, \Pi$| \tabularnewline
+		Ро: $\rho$ & \lstinline|$\rho$| \tabularnewline
+		Сигма: $\sigma, \Sigma$ & \lstinline|$\sigma, \Sigma$| \tabularnewline		
+		Тау: $\tau$ & \lstinline|$\tau$| \tabularnewline		
+		Фи: $\phi$ & \lstinline|$\phi$| \tabularnewline		
+		Хи: $\chi$ & \lstinline|$\chi$| \tabularnewline		
+		Пси: $\psi, \Psi$ & \lstinline|$\psi, \Psi$| \tabularnewline				
+		Омега: $\omega, \Omega$ & \lstinline|$\omega, \Omega$| \tabularnewline\hline		
+		Матрица жирным шрифтом без наклона: $\matr{A}$ & \lstinline|$\matr{A}$| \tabularnewline\hline			
+		Матрица нежирным шрифтом с наклоном: $A$ & \lstinline|$A$| \tabularnewline\hline			
+		Верхние символы (крышки) над одиночными буквами в сочетаниях с индексами: $\hat{\alpha}_0, \hat{A}, \tilde{B}, \bar{C}, \check{D}, \vec{E}, \hat{\mu}_{kl}^i$ & \lstinline|$\hat{\alpha}_0, \hat{A}, \tilde{B}, \bar{C}, \check{D}, \vec{E}, \hat{\mu}_{kl}^i$| \tabularnewline\hline
+		Верхние символы над многобуквенными обозначениями: $\widehat{AB}, \widetilde{CD}, \overline{ABC}, \overrightarrow{DEF}$ & \lstinline|$\widehat{AB}, \widetilde{CD}, \overline{ABC}, \overrightarrow{DEF}$| \tabularnewline\hline		
+		Скобки: \[1\] & \lstinline|1| \tabularnewline\hline		
+		Фигурные скобки (обозначение элемента вектора, например): $\sigma_{i}^{j}\{ x \}=1$ & \lstinline|$\sigma_{i}^{j}\{ x \}=1$| \tabularnewline\hline
+		Умножение (крестом): $A = B \times C$ & \lstinline|$A = B \times C$| \tabularnewline\hline
+		Деление (в одну строку): $A = B / C$ & \lstinline|$A = B / C$| \tabularnewline\hline
+		Деление (дробь без выравнивания высоты): ${A = \frac{B}{C}}$ & \lstinline|${A = \frac{B}{C}}$| \tabularnewline\hline
+		Деление (дробь) c выравниванием высоты: \[A = \frac{B}{C}\]& \lstinline|\[A = \frac{B}{C}\]| \tabularnewline\hline
+		Многоэтажная дробь:\[X=\frac{\ln\left(\cfrac{A}{B}\right)} {\ln\left(\cfrac{C}{D} \right)}\] & \lstinline|\[X=\frac{\ln\left(\cfrac{A}{B}\right)} {\ln\left(\cfrac{C}{D} \right)}\]| \tabularnewline\hline
+		Знак радикала: $\sqrt{a}, \sqrt[3]{b}$ & \lstinline|$\sqrt{a}, \sqrt[3]{b}$| \tabularnewline\hline
+		Производная штрихами: $f', f'', f'''$ & \lstinline|$f', f'', f'''$| \tabularnewline\hline
+		Производная точками: $\dot{f}, \ddot{f}, \dddot{f}$ & \lstinline|$\dot{f}, \ddot{f}, \dddot{f}$| \tabularnewline\hline		
+		Производная и частная производная дробью: \[\frac{d f(x)}{d x}, \frac{\partial f(x)}{\partial x}\] & \lstinline|\[\frac{d f(x)}{d x}, \frac{\partial f(x)}{\partial x}\]| \tabularnewline\hline
+		Интеграл c разным размещением пределов интегрирования: \[\int_0^{\infty}f(x)dx, \int\limits_a^{b}f(x)dx \] & \lstinline|\[\int_0^{\infty}f(x)dx, \int\limits_a^{b}f(x)dx \]| \tabularnewline\hline
+		Знак суммы c разным размещением пределов суммирования: \[\sum_{i=1}^n a_i, \sum\nolimits_{i=1}^n b_i\] & \lstinline|\[\sum_{i=1}^n a_i, \sum\nolimits_{i=1}^n b_i\]| \tabularnewline\hline
+		Знак произведения c разным размещением пределов перемножения: \[\prod_{i=1}^n a_i, \prod\nolimits_{i=1}^n b_i\] & \lstinline|\[\prod_{i=1}^n a_i, \prod\nolimits_{i=1}^n b_i\]| \tabularnewline\hline
+	\end{longtable}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Сумма, умножение, деление, дробь:
+%{\zerodisplayskips
+%	\begin{align}
+%	\text{сумма:}\quad & A+B=C, \label{eq:ф6}\\
+%	\text{умножение:}\quad & A\times B=C, \label{eq:ф7}\\
+%	\text{деление через косую черту:}\quad & A/B=C, \label{eq:ф8}\\
+%	\text{дробь (решение квадратного уравнения):}\quad & x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}, \label{eq:ф9}\\
+%	\text{дробь (решение квадратного уравнения):}\quad & x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \label{eq:ф99}
+%	\end{align}
+%}%
+%
+%Знак <<\&>> внутри формулы и конструкции \verb=\begin{align}...\end{align}= вызывает выравнивание по этому символу. 
+%
+%Обратите внимание, повторная вставка формулы (\ref{eq:ф99}) вызывает автоматическое выравнивание по высоте.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Производная и интеграл:
+%{\zerodisplayskips
+%	\begin{equation}	
+%	f'\quad f''\quad
+%	\dot{f}\quad \ddot{f} \quad
+%	\frac{d f}{d x}\quad
+%	\frac{\partial f}{\partial x}
+%	\int_0^{\infty}\quad
+%	\int\limits_0^{\infty}.\quad
+%	\label{eq:ф10}
+%	\end{equation}
+%}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Знак суммы:
+%{\zerodisplayskips
+%	\begin{equation}	
+%	\sum_{i=1}^n a_i,\quad
+%	\sum\nolimits_{i=1}^n b_i.
+%	\label{eq:ф11}
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Перенос формул вручную c указанием места разделения и команды \verb=split=:
+%{\zerodisplayskips
+%	\begin{equation}	
+%	\begin{split}
+%	x&=1000+1100+{}\\
+%	 &+1200+1300.
+%	\end{split}
+%	\label{eq:ф12}
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Cистема уравнений с фигурной скобкой (выравнивание по знаку <<=>>):
+%{%\zerodisplayskips
+%	\begin{equation}	
+%	\left\{
+%	\begin{aligned}
+%	x^2+y^2&=7 \\
+%	x+y & = 3. \\
+%	\end{aligned}
+%	\right.
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Cистема уравнений с фигурной скобкой (выравнивание по левому краю):
+%{%\zerodisplayskips
+%	\begin{equation}	
+%	\left\{
+%	\begin{aligned}
+%	& x^2+y^2=7 \\
+%	& x+y=3.
+%	\end{aligned}
+%	\right.
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Значение, зависящее от условий:
+%{%\zerodisplayskips
+%	\begin{equation}	
+%	|\sin(x)|=
+%	\begin{cases}
+%	\sin(x), & 0<x<\pi, \\
+%	-\sin(x), & \pi<x<2\pi.	
+%	\end{cases}
+%	\label{eq:ф13}
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Длина волны через частоту:
+%{\zerodisplayskips
+%	\begin{equation}	
+%	\lambda=C/(Fr \times 10^3).
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Пример очень длинной формулы с переносом на 2 строки c выравниванием по знакам <<=>> и <<+>>:
+%{%\zerodisplayskips
+%	\begin{equation}
+%	\begin{split}	
+%	Vf_i&=X.V_i\times 0.5 \times (\cos((X.K_i - AzEndR_i)\times DgToRd) +{}\\
+%	    &+\cos((X.K_i - AzEndT_i)\times DgToRd).
+%	\label{eq:ф14}
+%	\end{split}
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Еще пример очень длинной формулы с переносом на 3 строки c выравниванием по знакам <<=>> и <<+>>:
+%{%\zerodisplayskips
+%	\begin{equation}
+%	\begin{split}	
+%	ABCD&=X.V_i\times 0.5 \times (\cos((X.K_i - AzEndR_i)\times DgToRd) +{}\\
+%	&+\cos((X.K_i - AzEndT_i)\times DgToRd)+{}\\
+%	&+\cos((X.K_i - AzEndT_i)\times DgToRd).  
+%	\label{eq:ф15}
+%	\end{split}
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Пример автовыбора высоты скобок путем использования команд \verb=\left= и \verb=\right= соответственно:
+%{\zerodisplayskips1324
+%	\begin{equation}
+%	f(x)=1+\left(\frac{1}{1-x^{2}}
+%	\right)^3.
+%	\end{equation}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\item Пример многоэтажной дроби:
+%{%\zerodisplayskips
+%	\begin{equation}
+%	X=\frac{\ln\left(\cfrac{A}{B}\right)\times \ln\left(\cfrac{C}{D}\right)}{\ln\left(\cfrac{E}{F} \right)\times \ln\left(\cfrac{G}{H} \right)}.
+%	\end{equation}
+%}
+%%%%%%%%%
+%\end{enumerate}	
+%
 

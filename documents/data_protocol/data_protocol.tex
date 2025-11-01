@@ -1,0 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \file       data_protocol.tex
+% \brief      Протокол обмена
+% \date       28.02.23 - создан
+% \author     Соболев А.А.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[dataprotocol]{../espd}
+\newboolean{useacrolist}
+\setboolean{useacrolist}{true}
+%\setboolean{useacrolist}{false}
+\ifthenelse{\boolean{useacrolist}}{%	
+	\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}{%
+	\usepackage[printonlyused,nolinebreak,nohyperlinks,nolist]{acronym} % ключ nolist выключает создание перечня сокращений как отдельного раздела!
+}
+\input{../preamble} % Преамбула
+%\graphicspath{./images/} % Директория для картинок в тексте
+\begin{document} % Начало документа
+\clubpenalty=10000 % Это костыль против
+\widowpenalty=10000 % "висячих" строк
+\righthyphenmin=200 % Избавляемся
+{\sloppy % от переносов слов
+\makelisttitlesimple{} % Титульный лист
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{Аннотация}{annotation}
+	\input{src/аннотация.tex}
+}
+{
+	\cleardoublepage
+	\phantomsection
+	\pdfbookmark[1]{\wordcontents}{toc}
+	\tableofcontents % Содержание
+}
+%
+% Дальше пошли разделы
+\input{src/входные_и_выходные_данные.tex} 
+%
+% Перечень сокращений
+\cleardoublepage
+\phantomsection
+\input{../common/аббревиатуры.tex}
+%
+%% Перечень литературы
+%\cleardoublepage
+%\phantomsection
+%\bibliography{../bibliography,../bibliography_gost19}
+%
+% Лист регистрации изменений по ЕСПД
+\registrationlistESPD 
+}
+\end{document}

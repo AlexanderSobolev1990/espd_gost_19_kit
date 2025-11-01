@@ -7,7 +7,7 @@
 % \author     Соболев А.А.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % Для сокращений nolist - без сокращений
+%\usepackage[printonlyused,nolinebreak,nohyperlinks]{acronym} % Для сокращений nolist - без сокращений
 \usepackage{setspace}
 \usepackage{fontspec}
 \usepackage{cite} % Для цитирования
@@ -28,6 +28,7 @@
 %%sorting=nyvt
 %]{biblatex}
 \usepackage{cite}
+\usepackage{ifthen}
 
 %\usepackage[group-digits=false, output-decimal-marker={.}]{siunitx} % Для лёгкой замены разделителя целой и дробной частей (точка/запятая) писать \num{0.5} и тогда автоматом точка будет заменена на запятую, если выставить output-decimal-marker={.}
 \usepackage{icomma} % Пакет подключает использование запятой как разделителя целой и дробной части, если он записан слитно
@@ -43,13 +44,15 @@
 	colorlinks=false,
 	linktoc=all,
 	hypertexnames=false,
-%	hidelinks = true,
+	hidelinks = true,
 	bookmarks=true
 	bookmarksnumbered=true
 }
 \usepackage{bookmark}
+\usepackage{mfirstuc} % Для выдачи команды \capitalisewords{...} чтобы сделать первые буквы заглавными в словах
 
 \newcommand{\intdelim}{,}%{;}%  разделитель интервала вида [0,360)
+\newcommand{\enumlineending}{;} % команда знака препинания в конце строки перечисления
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % исправление чтобы пакет setspace мог менять межстрочный интервал!
 \makeatletter
@@ -106,7 +109,7 @@
 %	stepnumber=1,
 %	numberstyle=\tiny\color{mauve},
 %	numberstyle=\color{mauve},
-%	keywordstyle=\color{blue},
+	keywordstyle=\color{black}, % Раскоментить это и закоментить morekeywords чтобы все ключевые слова были не жирным шрифтом
 %	commentstyle=\color{drkgreen},
 %	stringstyle=\color{mauve},
 %    listingname=qwerty,%\text{Листинг},
@@ -115,8 +118,8 @@
 	tabsize=4,
 %	inputpath=../code
 	inputpath=code,
-	morekeywords={*,int8_t,uint8_t,int16_t,uint16_t,int32_t,uint32_t,int64_t,uint64_t,
-		function,class,prototype,union},
+%	morekeywords={*,int8_t,uint8_t,int16_t,uint16_t,int32_t,uint32_t,int64_t,uint64_t,
+%		function,class,prototype,union},
 %	xleftmargin=2em % левый отступ!
 }
 %
@@ -185,18 +188,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Задание полей титульных страниц
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\productcodefull}{АБВГ.12345} % Код организации + Регистрационный код
-\newcommand{\programname}{Галактический~транклюкатор} % Название программы
-\newcommand{\productname}{Шифр изделия} % Шифр (название) изделия
-\newcommand{\productnamefirst}{Шифр 1}
-\newcommand{\productnamesecond}{Шифр 2}
+\newcommand{\productcodefull}{АБВГ.ХХХХХ} % Код организации + Регистрационный код
+\newcommand{\programname}{Галактический транклюкатор} % Название программы
+\newcommand{\productname}{XXL} % Шифр (название) изделия
+\newcommand{\productnamefirst}{XXL1}
+\newcommand{\productnamesecond}{XXL2}
+%\newcommand{\progr}{Программный комплекс <<\programname>>}% Только для спецификации!
 \newcommand{\progr}{Комплекс программ \programname.}% Только для спецификации!
 \newcommand{\progrcomp}{Программа \programname.}% Только для спецификации!
 
-\title{ИЗДЕЛИЕ~{\productname}\\СПЕЦИАЛЬНОЕ~ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ~ПТУ\\Комплекс программ\\ \MakeUppercase\programname} 
+%\title{Изделие~{\productname}\\Специальное~программное обеспечение~ПТУ\\Программный~комплекс\\\programname} 
+\title{ИЗДЕЛИЕ~{\productname}\\СПЕЦИАЛЬНОЕ~ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ\\Комплекс программ\\ \MakeUppercase\programname} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\firstapplication{АБВГ.123456.123} % Первое применение
+\firstapplication{АБВГ.ХХХХХХ.ХХХ} % Первое применение
 \referencenumber{} % Справ №
 % Установка титульников документа и ЛУ:
 \def\titlemode{2} % {} - короткий штамп, {1} - полный штамп, {2} - только перв. примен. {3} - только справ №
@@ -213,25 +218,25 @@
 % Фамилии, должности и т.д. для титульников
 %
 % СОГЛАСОВАНО
-\customerrank{Начальник~чего-то там\\~\\~} % На двух строках
-%\customername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
-\customername{А.Б.~Нонеймов} % \phantom - убирает видимость
+\customerrank{Начальник~чего-то\\~\\~} % На двух строках
+\customername{А.Б.~Кто-то} % \phantom - убирает видимость
 
 % УТВЕРЖДАЮ
-\chiefconstructorrank{Главный конструктор\\изделия \productname\\начальник центра}
-\chiefconstructorname{А.Б.~Главный}
+\chiefconstructorrank{Главный конструктор\\изделия \productname\\начальник чего-то}
+\chiefconstructorname{А.Б.~Начальник}
 %
-\fromcustomerrank{От заказчика}
+\fromcustomerrank{От кого-то}
 \fromcustomername{\phantom{А.Б.~Заказчиков}} % \phantom - убирает видимость
 %
-\deputyofchiefconstructorrank{Зам.~главного конструктора}%{Начальник ТО-34}
-\deputyofchiefconstructorname{А.Б.~Заместителев}
+\deputyofchiefconstructorrank{Зам.~главного конструктора}
+\deputyofchiefconstructorname{А.Б.~Замгэка}
 %
-\developerrank{Разработчик}%{Инженер 1 кат.}
-\developername{А.Б.~Разработчиков}
+\developerrank{Разработчик программы}
+\developerrankafter{Разработчик алгоритма и комплекса программ}
+\developername{А.Б.~Гениальный}
 
 % Исполнитель(и)
-\authorname{А.Б.~Исполнителев}
+\authorname{А.Б.~Инфузория}
 %%
 %\authori{А.Б.~Пацак1}
 %\authorii{А.Б.~Пацак2}
@@ -239,7 +244,26 @@
 \normocontrollerrank{Нормоконтролер}
 \normocontrollername{~}
 
-\year{2023}
+\year{2025}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Настройка нумерации рисунков, таблиц, формул внутри раздела/всего доумента
+%
+% Таблицы:
+\makeatletter
+\renewcommand{\thetable}{\thesection.\@arabic\c@table}
+\@addtoreset{table}{section}
+\makeatother
+
+% Рисунки:
+\makeatletter
+\renewcommand{\theillustration}{\wordrefimage\thesection.\@arabic\c@illustration}
+\renewcommand{\theunderillustration}{\wordimage~\thesection.\@arabic\c@illustration}
+\@addtoreset{illustration}{section}
+\makeatother
+
+% Формулы:
+%\numberwithin{equation}{section}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Водяной знак
 %

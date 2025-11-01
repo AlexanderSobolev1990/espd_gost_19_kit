@@ -1,4 +1,18 @@
-\newpage
-\section{Требования к программе}
+%\newpage
+\vspace{1.0cm}
+\section{Требования к программе}\label{section:Требования}
 
-Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+\input{../common/назначение.tex} 
+
+Комплекс должен решать следующие задачи.
+
+{
+\renewcommand{\enumlineending}{.}
+%\renewcommand{\capitalisewords}{}	
+	
+\renewcommand\theenumi{\thesection.\arabic{enumi}}
+\renewcommand\labelenumi{\theenumi.} % Без
+\addtolength{\labelwidth}{-3mm} % скобок
+%\addtolength{\labelwidth}{-3.5mm} % Со скобкой
+\input{../common/решаемые_задачи.tex}
+}
